@@ -9,6 +9,3 @@ def home(request):
 
 def authenticate(request):
     return render(request, 'authenticate.html')
-
-def register(request):
-    return render(request, 'register.html')
