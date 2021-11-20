@@ -9,3 +9,7 @@ def home(request):
 
 def authenticate(request):
     return render(request, 'authenticate.html')
+
+
+def login(request):
+    return render(request, 'login.html')
