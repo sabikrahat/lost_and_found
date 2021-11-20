@@ -3,8 +3,8 @@
 <html lang="en">
 
 <!-- Master Branch -->
-    <!-- Dev Branch -->
-        <!-- Dev Rahat Branch -->
+<!-- Dev Branch -->
+<!-- Dev Rahat Branch -->
 
 <head>
     <!-- Required meta tags -->
@@ -14,7 +14,7 @@
     <meta name="author" content="Md. Sabik Alam Rahat, A self-learner full stack developer.">
     <meta name="generator" content="Coding Table">
 
-    <!-- Load Font Awesome Icon Library -->
+    <!-- Default CSS file -->
     <link rel="stylesheet" type="text/css" id="mydefaultstylesheet" href="{% static 'css/default.css' %}">
 
     <!-- Bootstrap CSS -->
@@ -74,17 +74,11 @@
     </nav>
 
     <!-- Main Part -->
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                {% block content %}
-                <div class="custom-center">
-                    <h1>Hello, world!</h1>
-                </div>
-                {% endblock %}
-            </div>
-        </div>
+    {% block content %}
+    <div class="custom-center">
+        <h1>Hello, world!</h1>
     </div>
+    {% endblock %}
 
     <!-- Footer -->
     <div class="container-footer">
