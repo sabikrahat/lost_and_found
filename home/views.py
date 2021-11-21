@@ -75,3 +75,11 @@ def logout(request):
         messages.error(request, "An error occurred. Try again.")
         return redirect('/')
     return redirect('/')
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')
+    
+def terms_and_conditions(request):
+    return render(request, 'terms_and_conditions.html')
+    
+def feedback(request):
+    return render(request, 'feedback.html')
