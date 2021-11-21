@@ -17,20 +17,21 @@ p {
 body {
   background: white;
   color: black;
+  font-family: tahoma;
 }
 
 p {
   font-size: 24px;
 }
 
-#wrap {
+.wrap {
   width: 530px;
   margin: 20px auto 0;
   height: 1000px;
 }
 
 h1 {
-  margin: bottom 20px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 35px;
   font-family: tahoma;
@@ -42,26 +43,25 @@ h1 {
   height: 447px;
   position: relative;
   top: 0px;
-  transition: all ls ease-in-out 0.3s;
+  transition: all 1s ease-in-out 0.3s;
 }
 
-
-#form-wrap:before{
+#form-wrap::before {
   content: "";
   padding: absolute;
   bottom: 128px;
   left: 0px;
-  background: url(../images/before.png);
+  background: url("../images/before.png");
   width: 530px;
   height: 317px;
 }
 
-#form-wrap:after{
+#form-wrap::after {
   content: "";
   padding: absolute;
   bottom: 0px;
   left: 0px;
-  background: url(../images/after.png);
+  background: url("../images/after.png");
   width: 530px;
   height: 259px;
 }
@@ -87,7 +87,7 @@ form {
   padding: 20px;
   border: 1px solid white;
   border-right: 3px;
-  transition: all ls ease-in-out 0.3s;
+  transition: all 1s ease-in-out 0.3s;
 }
 
 #form-wrap:hover form {
