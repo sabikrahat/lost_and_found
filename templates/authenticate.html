@@ -14,19 +14,36 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="#" class="sign-in-form">
+                <form method="POST" action="{% url 'login' %}" class="sign-in-form">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for result in messages %}
+                    {% if result.tags == "error" %}
+                    <div class="alert alert-danger" style="color: red;">
+                        {{ result }}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-success" style="color: green;">
+                        {{ result }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <br>
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" />
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" name="email" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
+                        <input type="password" placeholder="Password" name="password" required />
                     </div>
-                    <a href="{% url 'home' %}"><input type="button" value="Login" class="btn solid" /></a>
-                    <p class="social-text">Or Sign in with social platforms</p>
-                    <div class="social-media">
+                    <input type="submit" value="Login" class="btn solid" />
+                    <a href="#">
+                        <p class="social-text">Forget Password ?</p>
+                    </a>
+                    <!-- <div class="social-media">
                         <a href="#" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
                         </a>
@@ -39,32 +56,34 @@
                         <a href="#" class="social-icon">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </form>
-                <form action="#" class="sign-up-form">
+                <form method="POST" action="{% url 'signup' %}" class="sign-up-form">
+                    {% csrf_token %}
+                    <br>
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" />
+                        <input type="text" placeholder="Full name" name="name" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" />
+                        <input type="email" placeholder="Email" name="email" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
+                        <input type="password" placeholder="Password" name="password" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-phone-alt"></i>
-                        <input type="text" placeholder="Phone number" />
+                        <input type="text" placeholder="Phone number" name="phoneNumber" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-map-marker-alt"></i>
-                        <input type="text" placeholder="Location" />
+                        <input type="text" placeholder="Location" name="location" required />
                     </div>
-                    <a href="{% url 'home' %}"><input type="button" class="btn" value="Sign up" /></a>
-                    <p class="social-text">Or Sign up with social platforms</p>
+                    <input type="submit" class="btn" value="Sign up" />
+                    <!-- <p class="social-text">Or Sign up with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
@@ -78,7 +97,7 @@
                         <a href="#" class="social-icon">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
@@ -101,7 +120,7 @@
                 <div class="content">
                     <h3>One of us ?</h3>
                     <p>
-                        &emsp;&emsp;&emsp;&emsp;Login yourself to stay connected.&emsp;&emsp;&emsp;&emsp;
+                        Login yourself to stay connected and find out your lost materials.
                     </p>
                     <button class="btn transparent" id="sign-in-btn">
                         Sign in
