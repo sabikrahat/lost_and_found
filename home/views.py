@@ -32,8 +32,8 @@ def signup(request):
             saveUser.point = '100'
 
             if saveUser.isExists():
-                messages.error(request, t_email +
-                               " email address already registered...! Please Log in.")
+                messages.error(
+                    request, t_email + " email address already registered...! Please Log in.")
                 # return render(request, 'authenticate.html', context)
                 return redirect('../authenticate')
             else:
