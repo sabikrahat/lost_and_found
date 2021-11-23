@@ -29,3 +29,14 @@ class UserModel(models.Model):
         if UserModel.objects.filter(email=self.email):
             return True
         return False
+
+
+class UserFeedback(models.Model):
+    messengerId = models.CharField(max_length=10)
+    messengerName = models.CharField(max_length=50)
+    messengerEmail = models.CharField(max_length=40)
+    message = models.CharField(max_length=3072)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'users_feedbacks'
