@@ -85,11 +85,6 @@ def privacy_policy(request):
 def terms_and_conditions(request):
     return render(request, 'terms_and_conditions.html')
 
-
-def feedback(request):
-    return render(request, 'feedback.html')
-
-
 def feedback(request):
     try:
         user = UserModel.objects.get(email=request.session['email'])
