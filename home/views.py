@@ -8,22 +8,28 @@ import time
 # Create your views here.
 
 
+# home function
+
+
 def home(request):
     return render(request, 'home.html')
+
+
+# authentication function
 
 
 def authenticate(request):
     return render(request, 'authenticate.html')
 
 
+# signup function
+
+
 def signup(request):
-    context = {}
     if request.method == 'POST':
         if request.POST.get('name') and request.POST.get('email') and request.POST.get('password') and request.POST.get('phoneNumber') and request.POST.get('location') and request.POST.get('password'):
             saveUser = UserModel()
             # saveToken = Profile()
-
-            t_email = request.POST.get('email')
 
             saveUser.name = request.POST.get('name')
             saveUser.email = request.POST.get('email')
@@ -34,7 +40,7 @@ def signup(request):
 
             if saveUser.isExists():
                 messages.error(
-                    request, t_email + " email address already registered...! Please Log in.")
+                    request, request.POST.get('email') + " email address already registered...! Please Log in.")
                 # return render(request, 'authenticate.html', context)
                 return redirect('../authenticate')
             else:
@@ -44,13 +50,14 @@ def signup(request):
                 messages.success(
                     request, "Hello " + request.POST.get('name') + ", registration details saved successfully...! Please Log in now.")
                 return redirect('../authenticate')
-
     else:
         return redirect('../authenticate')
 
 
+# login function
+
+
 def login(request):
-    context = {}
     if request.method == 'POST':
         try:
             userDetail = UserModel.objects.get(
@@ -64,8 +71,10 @@ def login(request):
         except UserModel.DoesNotExist as e:
             messages.error(
                 request, 'No user found of this email....!')
-
     return redirect('../authenticate')
+
+
+# logout function
 
 
 def logout(request):
@@ -78,12 +87,22 @@ def logout(request):
     return redirect('/')
 
 
+# privacy policy function
+
+
 def privacy_policy(request):
     return render(request, 'privacy_policy.html')
 
 
+# terms & conditions function
+
+
 def terms_and_conditions(request):
     return render(request, 'terms_and_conditions.html')
+
+
+# feedback function
+
 
 def feedback(request):
     try:
@@ -106,13 +125,3 @@ def feedback(request):
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
-
-
-def logout(request):
-    try:
-        del request.session['email']
-        # messages.success(request, "Successfully logged out.")
-    except:
-        messages.error(request, "An error occurred. Try again.")
-        return redirect('/')
-    return redirect('/')
