@@ -8,6 +8,44 @@
 <!-- Dev Humaira Branch -->
 <!-- Dev Kawshik Branch -->
 
+<!--Css file-->
+<style>
+    .container-fluid {
+        animation: movedown 1s linear;
+        animation-delay: 0.1s;
+        visibility: hidden;
+        animation-fill-mode: forwards;
+    }
+    @keyframes movedown{
+        0%{
+            transform: translateY(-100px);
+            visibility: visible;
+        }
+        100%{
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+    }
+    .custom-center{
+        animation: moveright 1s linear;
+        animation-delay: 2s;
+        visibility: hidden;
+        animation-fill-mode: forwards;
+    }
+    @keyframes moveright{
+        0%{
+            transform: translateX(-100px);
+            visibility: visible;
+        }
+        100%{
+            transform: translateX(0);
+            visibility: visible;
+        }
+    }
+
+</style>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">

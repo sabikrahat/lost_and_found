@@ -1,11 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Dancing+Script:400,700);
+ @import url(https://fonts.googleapis.com/css?family=Dancing+Script:400,700); s
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
   padding: 0;
-  background-color: #c8e7d8;
+  background-color: #bbdefb;
   color: #4e5e72;
   text-align: center;
   font-family: monospace;
