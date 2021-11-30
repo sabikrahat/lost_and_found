@@ -96,13 +96,15 @@ def privacy_policy(request):
 
 # terms & conditions function
 
-
 def terms_and_conditions(request):
     return render(request, 'terms_and_conditions.html')
 
+# view profile page 
+
+def view_profile(request):
+    return render(request, 'view_profile.html')
 
 # feedback function
-
 
 def feedback(request):
     try:
