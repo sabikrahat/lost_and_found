@@ -9,5 +9,5 @@
 
 
 ### Lost & Found
-Lost & Found is a web-based application where a person can easily find out his or her lost product in a easiest  way.
+Lost & Found is a web-based application where a person can easily find out his or her lost product in the easiest way.
 
