@@ -7,8 +7,9 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
-    path('privacy_policy', views.privacy_policy, name="privacy_policy"),
-    path('terms_and_conditions', views.terms_and_conditions, name="terms_and_conditions"),
+    path('privacy-policy', views.privacy_policy, name="privacy-policy"),
+    path('terms-and-conditions', views.terms_and_conditions, name="terms-and-conditions"),
     path('feedback', views.feedback, name="feedback"),
-    path('view_profile', views.view_profile, name="view_profile"),
+    path('view-profile', views.view_profile, name="view-profile"),
+    path('edit-profile', views.edit_profile, name="edit-profile"),
 ]

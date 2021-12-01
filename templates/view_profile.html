@@ -4,113 +4,133 @@
 {% block content %}
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/view_profile.css'%}" />
-<div class="ScriptTop">
-    <div class="rt-container">
-        <div class="col-rt-4" id="float-right">
- 
-            <!-- Ad Here -->
-            
-        </div>
-        <div class="col-rt-2">
-            <ul>
-                <li><a href="https://codeconvey.com/html-code-for-student-profile" title="Back to tutorial page">Back to Tutorial</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<!--css file link-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/view_profile.css' %}">
 
-<header class="ScriptHeader">
-    <div class="rt-container">
-    	<div class="col-rt-12">
-        	<div class="rt-heading">
-            	<h1>Student Profile Page Design Example</h1>
-                <p>A responsive student profile page design.</p>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section>
-    <div class="rt-container">
-          <div class="col-rt-12">
-              <div class="Scriptcontent">
-              
-<!-- Student Profile -->
-<div class="student-profile py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card shadow-sm">
-          <div class="card-header bg-transparent text-center">
-            <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
-            <h3>Ishmam Ahasan Samin</h3>
-          </div>
+<div class="container" style="margin-bottom: 10em;">
+  <div class="main-body" style="margin-top: 2em;">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
           <div class="card-body">
-            <p class="mb-0"><strong class="pr-1">Student ID:</strong>321000001</p>
-            <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
-            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                width="192">
+              <div class="mt-3">
+                <h4>John Doe</h4>
+                <p class="text-secondary mb-1">Add your Bio.....</p>
+                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                <button class="btn btn-outline-primary">Message</button>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="card mt-3">
+          <ul class="list-group list-group-flush" style="padding: 0.2em;">
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0"><img src="{% static 'images/whatsapp.png' %}" alt="whatsapp" />
+                &emsp;Whatsapp
+              </h6><span class="text-secondary"><a target="_blank"
+                  href="https://wa.me/8801647629698/?text=urlencodedtext%22">https://wa.me/8801647629698</a></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">
+                <img src="{% static 'images/messenger.png' %}" alt="messenger" />
+                &emsp;Messenger
+              </h6><span class="text-secondary"><a target="_blank"
+                  href="https://m.me/sabikrahat">https://m.me/sabikrahat</a></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">
+                <img src="{% static 'images/telegram.png' %}" alt="telegram" />
+                &emsp;Telegram
+              </h6>
+              <span class="text-secondary"><a target="_blank"
+                  href="https://t.me/sabikrahat">https://t.me/sabikrahat</a></span>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="col-lg-8">
-        <div class="card shadow-sm">
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
-          </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
-              <tr>
-                <th width="30%">Roll</th>
-                <td width="2%">:</td>
-                <td>125</td>
-              </tr>
-              <tr>
-                <th width="30%">Academic Year	</th>
-                <td width="2%">:</td>
-                <td>2020</td>
-              </tr>
-              <tr>
-                <th width="30%">Gender</th>
-                <td width="2%">:</td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <th width="30%">Religion</th>
-                <td width="2%">:</td>
-                <td>Group</td>
-              </tr>
-              <tr>
-                <th width="30%">blood</th>
-                <td width="2%">:</td>
-                <td>B+</td>
-              </tr>
-            </table>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                Kenneth Valdez
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                fip@jukmuh.al
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Phone</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                (239) 816-9029
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                (320) 380-4539
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                Bay Area, San Francisco, CA
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-12">
+                <a href="{% url 'edit-profile' %}"><button type="button" class="btn btn-primary">Edit
+                    Profile</button></a>
+              </div>
+            </div>
           </div>
         </div>
-          <div style="height: 26px"></div>
-        <div class="card shadow-sm">
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
+
+        <div class="row gutters-sm">
+          <div class="col-sm-6 mb-3">
+            <div class="card h-100" style="align-items: center;">
+              <div class="card-body">
+                <img src="{% static 'images/nid-card-front.jpg' %}" height="200px" width="360px"
+                  style="align-items: center;" alt="lost and found image" />
+              </div>
+            </div>
           </div>
-          <div class="card-body pt-0">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <div class="col-sm-6 mb-3">
+            <div class="card h-100" style="align-items: center;">
+              <div class="card-body">
+                <img src="{% static 'images/nid-card-back.png' %}" height="200px" width="360px"
+                  style="align-items: center;" alt="lost and found image" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
-<!-- partial -->
-           
-    		</div>
-		</div>
-    </div>
-</section>
-     
-
-
-    <!-- Analytics -->
 
 
 {% endblock %}

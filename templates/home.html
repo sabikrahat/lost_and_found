@@ -16,34 +16,38 @@
         visibility: hidden;
         animation-fill-mode: forwards;
     }
-    @keyframes movedown{
-        0%{
+
+    @keyframes movedown {
+        0% {
             transform: translateY(-100px);
             visibility: visible;
         }
-        100%{
+
+        100% {
             transform: translateY(0);
             visibility: visible;
         }
 
     }
-    .custom-center{
+
+    .custom-center {
         animation: moveright 1s linear;
         animation-delay: 2s;
         visibility: hidden;
         animation-fill-mode: forwards;
     }
-    @keyframes moveright{
-        0%{
+
+    @keyframes moveright {
+        0% {
             transform: translateX(-100px);
             visibility: visible;
         }
-        100%{
+
+        100% {
             transform: translateX(0);
             visibility: visible;
         }
     }
-
 </style>
 
 <head>
@@ -63,6 +67,9 @@
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- Title -->
     <title>{% block title %}Lost & Found{% endblock %}</title>
@@ -89,6 +96,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'authenticate' %}">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view-profile' %}">Pofile</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -144,9 +154,9 @@
                 <p class="mb-1">&copy; 2021 <a href="https://sabikrahat.github.io" target="_blank">Coding Table</a> -
                     All rights reserved </p>
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="{% url 'privacy_policy' %}" target="_blank">Privacy Policy</a>
+                    <li class="list-inline-item"><a href="{% url 'privacy-policy' %}" target="_blank">Privacy Policy</a>
                     </li>
-                    <li class="list-inline-item"><a href="{% url 'terms_and_conditions' %}" target="_blank">Terms &
+                    <li class="list-inline-item"><a href="{% url 'terms-and-conditions' %}" target="_blank">Terms &
                             Conditions</a></li>
                     <li class="list-inline-item"><a href="{% url 'feedback' %}" target="_blank">Feedback</a></li>
                 </ul>
