@@ -17,11 +17,17 @@ class UserModel(models.Model):
     email = models.CharField(max_length=40)
     password = models.CharField(max_length=1024)
     phoneNumber = models.CharField(max_length=15)
+    bio = models.CharField(max_length=1024)
     location = models.CharField(max_length=30)
-    point = models.CharField(max_length=5)
-    image = models.ImageField(upload_to=filepath, null=True, blank=True)
+    locationLongitude = models.CharField(max_length=30)
+    locationLatitude = models.CharField(max_length=30)
+    messengerUrl = models.CharField(max_length=30)
+    whatsappUrl = models.CharField(max_length=30)
+    telegramUrl = models.CharField(max_length=30)
+    profileImg = models.ImageField(upload_to=filepath, null=True, blank=True)
+    nidFrontImg = models.ImageField(upload_to=filepath, null=True, blank=True)
+    nidBackImg = models.ImageField(upload_to=filepath, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
     class Meta:
         db_table = 'app_users'
 
@@ -29,6 +35,18 @@ class UserModel(models.Model):
         if UserModel.objects.filter(email=self.email):
             return True
         return False
+
+
+class ResetPwdTokens(models.Model):
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
+    forget_password_token = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'reset_pwd_tokens'
+
+    def __str__(self):
+        return self.user.email
 
 
 class UserFeedback(models.Model):

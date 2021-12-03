@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from home.models import UserFeedback, UserModel
+from home.models import ResetPwdTokens, UserFeedback, UserModel
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
@@ -27,16 +27,13 @@ def authenticate(request):
 
 def signup(request):
     if request.method == 'POST':
-        if request.POST.get('name') and request.POST.get('email') and request.POST.get('password') and request.POST.get('phoneNumber') and request.POST.get('location') and request.POST.get('password'):
+        if request.POST.get('name') and request.POST.get('email') and request.POST.get('password'):
             saveUser = UserModel()
-            # saveToken = Profile()
+            saveToken = ResetPwdTokens()
 
             saveUser.name = request.POST.get('name')
             saveUser.email = request.POST.get('email')
             saveUser.password = make_password(request.POST.get('password'))
-            saveUser.phoneNumber = request.POST.get('phoneNumber')
-            saveUser.location = request.POST.get('location')
-            saveUser.point = '100'
 
             if saveUser.isExists():
                 messages.error(
@@ -45,8 +42,8 @@ def signup(request):
                 return redirect('../authenticate')
             else:
                 saveUser.save()
-                # saveToken.user = saveRecord
-                # saveToken.save()
+                saveToken.user = saveUser
+                saveToken.save()
                 messages.success(
                     request, "Hello " + request.POST.get('name') + ", registration details saved successfully...! Please Log in now.")
                 return redirect('../authenticate')
@@ -103,7 +100,12 @@ def terms_and_conditions(request):
 
 
 def view_profile(request):
-    return render(request, 'view_profile.html')
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        return render(request, 'view_profile.html', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect(login)
 
 # edit profile page
 

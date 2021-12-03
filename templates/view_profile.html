@@ -14,12 +14,28 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
-                width="192">
+              {% if user.image %}
+              <img src="{{user.profileImg.url}}" alt="{{user.name}}" class="rounded-circle" width="192" height="192"
+                style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
+              {% else %}
+              <img src="{% static 'images/default_dp.gif' %}" alt="{{user.name}}" class="rounded-circle" width="192"
+                height="192" style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
+              {% endif %}
               <div class="mt-3">
-                <h4>John Doe</h4>
-                <p class="text-secondary mb-1">Add your Bio.....</p>
-                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                <h4>{{user.name}}</h4>
+                {% if user.bio %}
+                <p class="text-secondary mb-1">{{user.bio}}</p>
+                {% else %}
+                <p class="text-secondary mb-1" onmouseover="" style="cursor: pointer;"
+                  onclick="location.href='edit-profile'">"Add a short description about
+                  you......"</p>
+                {% endif %}
+                {% if user.location %}
+                <p class="text-muted font-size-sm">{{user.location}}</p>
+                {% else %}
+                <p class="text-muted font-size-sm" onmouseover="" style="cursor: pointer;"
+                  onclick="location.href='edit-profile'">"Add your location...."</p>
+                {% endif %}
                 <button class="btn btn-outline-primary">Message</button>
               </div>
             </div>
@@ -30,23 +46,34 @@
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <h6 class="mb-0"><img src="{% static 'images/whatsapp.png' %}" alt="whatsapp" />
                 &emsp;Whatsapp
-              </h6><span class="text-secondary"><a target="_blank"
-                  href="https://wa.me/8801647629698/?text=urlencodedtext%22">https://wa.me/8801647629698</a></span>
+              </h6><span class="text-secondary">
+                {% if user.whatsappUrl %}
+                <a target="_blank" href="{{user.whatsappUrl}}">{{user.whatsappUrl}}</a>
+                {% else %}
+                <a href="{% url 'edit-profile' %}">tap here to add...</a>
+                {% endif %}
+              </span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <h6 class="mb-0">
                 <img src="{% static 'images/messenger.png' %}" alt="messenger" />
                 &emsp;Messenger
-              </h6><span class="text-secondary"><a target="_blank"
-                  href="https://m.me/sabikrahat">https://m.me/sabikrahat</a></span>
+              </h6><span class="text-secondary">{% if user.messengerUrl %}
+                <a target="_blank" href="{{user.messengerUrl}}">{{user.messengerUrl}}</a>
+                {% else %}
+                <a href="{% url 'edit-profile' %}">tap here to add...</a>
+                {% endif %}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
               <h6 class="mb-0">
                 <img src="{% static 'images/telegram.png' %}" alt="telegram" />
                 &emsp;Telegram
               </h6>
-              <span class="text-secondary"><a target="_blank"
-                  href="https://t.me/sabikrahat">https://t.me/sabikrahat</a></span>
+              <span class="text-secondary">{% if user.telegramUrl %}
+                <a target="_blank" href="{{user.telegramUrl}}">{{user.telegramUrl}}</a>
+                {% else %}
+                <a href="{% url 'edit-profile' %}">tap here to add...</a>
+                {% endif %}</span>
             </li>
           </ul>
         </div>
@@ -59,7 +86,7 @@
                 <h6 class="mb-0">Full Name</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                Kenneth Valdez
+                {{user.name}}
               </div>
             </div>
             <hr>
@@ -68,16 +95,7 @@
                 <h6 class="mb-0">Email</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                fip@jukmuh.al
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Phone</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                (239) 816-9029
+                {{user.email}}
               </div>
             </div>
             <hr>
@@ -85,18 +103,28 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Mobile</h6>
               </div>
+              {% if user.phoneNumber %}
               <div class="col-sm-9 text-secondary">
-                (320) 380-4539
+                {{user.phoneNumber}}
               </div>
+              {% else %}<div class="col-sm-9 text-secondary">
+                didn't add yet...
+              </div>
+              {% endif %}
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <h6 class="mb-0">Address</h6>
               </div>
+              {% if user.location %}
               <div class="col-sm-9 text-secondary">
-                Bay Area, San Francisco, CA
+                {{user.location}}
               </div>
+              {% else %}<div class="col-sm-9 text-secondary">
+                didn't add yet...
+              </div>
+              {% endif %}
             </div>
             <hr>
             <div class="row">
@@ -107,21 +135,30 @@
             </div>
           </div>
         </div>
-
         <div class="row gutters-sm">
           <div class="col-sm-6 mb-3">
             <div class="card h-100" style="align-items: center;">
               <div class="card-body">
-                <img src="{% static 'images/nid-card-front.jpg' %}" height="200px" width="360px"
-                  style="align-items: center;" alt="lost and found image" />
+                {% if user.nidFrontImg %}
+                <img src="{{user.nidFrontImg.url}}" height="200px" width="360px" style="align-items: center;"
+                  alt="lost and found image" />
+                {% else %}
+                <a href="{% url 'edit-profile' %}"><img src="{% static 'images/nid-card-front.png' %}" height="200px"
+                    width="360px" style="align-items: center;" alt="lost and found image" /></a>
+                {% endif %}
               </div>
             </div>
           </div>
           <div class="col-sm-6 mb-3">
             <div class="card h-100" style="align-items: center;">
               <div class="card-body">
-                <img src="{% static 'images/nid-card-back.png' %}" height="200px" width="360px"
-                  style="align-items: center;" alt="lost and found image" />
+                {% if user.nidBackImg %}
+                <img src="{{user.nidBackImg.url}}" height="200px" width="360px" style="align-items: center;"
+                  alt="lost and found image" />
+                {% else %}
+                <a href="{% url 'edit-profile' %}"><img src="{% static 'images/nid-card-back.png' %}" height="200px"
+                    width="360px" style="align-items: center;" alt="lost and found image" /></a>
+                {% endif %}
               </div>
             </div>
           </div>
