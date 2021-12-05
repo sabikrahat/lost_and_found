@@ -19,8 +19,6 @@ class UserModel(models.Model):
     phoneNumber = models.CharField(max_length=15)
     bio = models.CharField(max_length=1024)
     location = models.CharField(max_length=30)
-    locationLongitude = models.CharField(max_length=30)
-    locationLatitude = models.CharField(max_length=30)
     messengerUrl = models.CharField(max_length=30)
     whatsappUrl = models.CharField(max_length=30)
     telegramUrl = models.CharField(max_length=30)

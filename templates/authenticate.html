@@ -43,20 +43,6 @@
                     <a href="#">
                         <p class="social-text">Forget Password ?</p>
                     </a>
-                    <!-- <div class="social-media">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div> -->
                 </form>
                 <form method="POST" action="{% url 'signup' %}" class="sign-up-form">
                     {% csrf_token %}
@@ -74,30 +60,7 @@
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Password" name="password" required />
                     </div>
-                    <!-- <div class="input-field">
-                        <i class="fas fa-phone-alt"></i>
-                        <input type="text" placeholder="Phone number" name="phoneNumber" required />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <input type="text" placeholder="Location" name="location" required />
-                    </div> -->
                     <input type="submit" class="btn" value="Sign up" />
-                    <!-- <p class="social-text">Or Sign up with social platforms</p>
-                    <div class="social-media">
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-google"></i>
-                        </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div> -->
                 </form>
             </div>
         </div>

@@ -105,13 +105,41 @@ def view_profile(request):
         return render(request, 'view_profile.html', {'user': user})
     except:
         messages.error(request, 'You need to login first')
-        return redirect(login)
+        return redirect('authenticate')
 
 # edit profile page
 
 
 def edit_profile(request):
-    return render(request, 'edit_profile.html')
+    if request.method == 'POST':
+        user = UserModel.objects.get(email=request.session['email'])
+        if request.POST.get('editName') and request.POST.get('editPhn') and request.POST.get('editLocation') and request.POST.get('editBio') and request.POST.get('editMessengerUrl') and request.POST.get('editWhatsappUrl') and request.POST.get('editTelegramUrl'):
+
+            user.name = request.POST.get('editName')
+            user.phoneNumber = request.POST.get('editPhn')
+            user.location = request.POST.get('editLocation')
+            user.bio = request.POST.get('editBio')
+            user.messengerUrl = request.POST.get('editMessengerUrl')
+            user.whatsappUrl = request.POST.get('editWhatsappUrl')
+            user.telegramUrl = request.POST.get('editTelegramUrl')
+
+            if len(request.FILES) != 0:
+                user.profileImg = request.FILES['editPhoto']
+                user.nidFrontImg = request.FILES['editNidFront']
+                user.nidBackImg = request.FILES['editNidBack']
+
+            user.save()
+            messages.success(
+                request, "Your profile updated successfully...!")
+            return redirect('view-profile')
+
+    else:
+        try:
+            user = UserModel.objects.get(email=request.session['email'])
+            return render(request, 'edit_profile.html', {'user': user})
+        except:
+            messages.error(request, 'You need to login first')
+            return redirect('authenticate')
 
 # feedback function
 

@@ -6,7 +6,20 @@
 
 <!--css file link-->
 <link rel="stylesheet" type="text/css" href="{% static 'css/view_profile.css' %}">
-
+{% if messages %}
+{% for result in messages %}
+<div>&ensp;</div>
+{% if result.tags == "error" %}
+<div class="alert alert-danger">
+  {{ result }}
+</div>
+{% else %}
+<div class="alert alert-success">
+  {{ result }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
 <div class="container" style="margin-bottom: 10em;">
   <div class="main-body" style="margin-top: 2em;">
     <div class="row gutters-sm">
@@ -14,7 +27,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              {% if user.image %}
+              {% if user.profileImg %}
               <img src="{{user.profileImg.url}}" alt="{{user.name}}" class="rounded-circle" width="192" height="192"
                 style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
               {% else %}

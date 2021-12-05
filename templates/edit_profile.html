@@ -4,66 +4,154 @@
 {% block content %}
 {% load static %}
 
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                    width="150px"
-                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-                    class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span>
-                </span></div>
+<form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                        <div class="col-md-3 border-right">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                        {% if user.profileImg %}
+                                        <img src="{{user.profileImg.url}}" alt="{{user.name}}"
+                                                class="rounded-circle mt-5" width="192" height="192"
+                                                style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
+                                        {% else %}
+                                        <img src="{% static 'images/default_dp.gif' %}" alt="{{user.name}}"
+                                                class="rounded-circle mt-5" width="192" height="192"
+                                                style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
+                                        {% endif %}
+                                        <br>
+                                        <span class="font-weight-bold">Md. Sabik Alam Rahat</span><span
+                                                class="text-black-50">sabikrahat72428@gmail.com</span><span>
+                                        </span><br>
+                                        <input type="file" class="form-control" id="editPhoto"
+                                                placeholder="Choose a file" name="editPhoto">
+                                </div>
+                        </div>
+                        <div class="col-md-5 border-right">
+                                <div class="p-3 py-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h4 class="text-right">Profile Settings</h4>
+                                        </div>
+                                        <div class="row mt-3">
+                                                <div class="col-md-12"><label class="labels">Name</label><input
+                                                                type="text" class="form-control"
+                                                                placeholder="Enter full name" name="editName" required
+                                                                value="{{user.name}}">
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <div class="col-md-12"><label class="labels">Phone Number</label><input
+                                                                type="text" class="form-control" required
+                                                                placeholder="Enter phone number" name="editPhn"
+                                                                value="{{user.phoneNumber}}">
+                                                </div>
+                                                <div class="row mt-3">
+                                                        <div class="col-md-8"><label
+                                                                        class="labels">Address</label><input type="text"
+                                                                        class="form-control"
+                                                                        placeholder="Enter your address"
+                                                                        name="editLocation" required
+                                                                        value="{{user.location}}"></div>
+                                                        <div class="col-md-4"><label class="labels">Tap here
+                                                                        👇</label><button
+                                                                        class="btn btn-primary profile-button"
+                                                                        type="button">Get
+                                                                        Location</button>
+                                                        </div>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <div class="col-md-12"><label class="labels">Bio</label><input
+                                                                type="text" class="form-control"
+                                                                placeholder="Tell us about yourself" name="editBio"
+                                                                required value="{{user.bio}}"></div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <div class="col-md-12"><label class="labels">Messenger Url</label><input
+                                                                type="text" class="form-control"
+                                                                placeholder="Enter your messenger url here"
+                                                                name="editMessengerUrl" required
+                                                                value="{{user.messengerUrl}}">
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <div class="col-md-12"><label class="labels">Whatsapp Url</label><input
+                                                                type="text" class="form-control"
+                                                                placeholder="Enter your whatsapp url here"
+                                                                name="editWhatsappUrl" required
+                                                                value="{{user.whatsappUrl}}">
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <div class="col-md-12"><label class="labels">Telegram Url</label><input
+                                                                type="text" class="form-control"
+                                                                placeholder="Enter your telegram url here"
+                                                                name="editTelegramUrl" required
+                                                                value="{{user.telegramUrl}}">
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                        </div>
+                                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                                        type="submit">Update Profile</button></div>
+                                </div>
+                        </div>
+                        <div class="col-md-4">
+                                <div class="p-3 py-5">
+                                        <div class="d-flex justify-content-between align-items-center experience"><span>
+                                                        <h5><b>Edit NID Card</b></h5>
+                                                </span><span class="border px-3 p-1 add-experience"><i
+                                                                class="fa fa-plus"></i>&nbsp;Identification</span></div>
+                                        <br>
+                                        <div class="col-md-12"><label class="labels"><b>Nid Front Part</b></label>
+                                                <div class="card h-100" style="align-items: center;">
+                                                        <div class="card-body">
+                                                                {% if user.nidFrontImg %}
+                                                                <img src="{{user.nidFrontImg.url}}" height="200px"
+                                                                        width="360px" style="align-items: center;"
+                                                                        alt="lost and found image" />
+                                                                {% else %}
+                                                                <a href="{% url 'edit-profile' %}"><img
+                                                                                src="{% static 'images/nid-card-front.png' %}"
+                                                                                height="200px" width="360px"
+                                                                                style="align-items: center;"
+                                                                                alt="lost and found image" /></a>
+                                                                {% endif %}
+                                                        </div>
+                                                        <input type="file" class="form-control" id="editNidFront"
+                                                                placeholder="Choose a file" name="editNidFront">
+                                                </div>
+                                        </div> <br>
+                                        <div class="col-md-12"><label class="labels"><b>Nid Back Part</b></label>
+                                                <div class="card h-100" style="align-items: center;">
+                                                        <div class="card-body">
+                                                                {% if user.nidBackImg %}
+                                                                <img src="{{user.nidBackImg.url}}" height="200px"
+                                                                        width="360px" style="align-items: center;"
+                                                                        alt="lost and found image" />
+                                                                {% else %}
+                                                                <a href="{% url 'edit-profile' %}"><img
+                                                                                src="{% static 'images/nid-card-back.png' %}"
+                                                                                height="200px" width="360px"
+                                                                                style="align-items: center;"
+                                                                                alt="lost and found image" /></a>
+                                                                {% endif %}
+                                                        </div>
+                                                        <input type="file" class="form-control" id="editNidBack"
+                                                                placeholder="Choose a file" name="editNidBack">
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
         </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"
-                            placeholder="first name" value=""></div>
-                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control"
-                            value="" placeholder="surname"></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text"
-                            class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text"
-                            class="form-control" placeholder="enter address line 1" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text"
-                            class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control"
-                            placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control"
-                            placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control"
-                            placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control"
-                            placeholder="enter email id" value=""></div>
-                    <div class="col-md-12"><label class="labels">Education</label><input type="text"
-                            class="form-control" placeholder="education" value=""></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control"
-                            placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text"
-                            class="form-control" value="" placeholder="state"></div>
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save
-                        Profile</button></div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit
-                        Experience</span><span class="border px-3 p-1 add-experience"><i
-                            class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text"
-                        class="form-control" placeholder="experience" value=""></div> <br>
-                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text"
-                        class="form-control" placeholder="additional details" value=""></div>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
 
 {% endblock %}
