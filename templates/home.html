@@ -50,6 +50,9 @@
     }
 </style>
 
+<!-- js file -->
+
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -76,6 +79,7 @@
 </head>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -121,8 +125,16 @@
                     {% endif %}
                 </ul>
                 {% if request.session.email %}
-                <b style="color: rgb(13, 184, 13);">&ensp;|&nbsp;Hello!&nbsp;{{request.session.email}}&nbsp;|&ensp;</b>
+                <b>
+                    <p id="nameshow"
+                        style="color: rgb(13, 184, 13); text-align: center; margin: 0.3em; padding-right: 1em;"></p>
+                </b>
                 {% endif %}
+                <script type="text/javascript">
+                    var email = "{% if request.session.email %}{{ request.session.email }}{% endif %}";
+                    const username = ' | Hello, ' + email.split("@")[0] + ' | ';
+                    document.getElementById("nameshow").innerHTML = username;
+                </script>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
