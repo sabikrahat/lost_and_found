@@ -11,7 +11,7 @@
 <!--Css file-->
 <style>
     .container-fluid {
-        animation: movedown 1s linear 1;
+        animation: movedown 1s linear;
         animation-delay: 0.1s;
         visibility: hidden;
         animation-fill-mode: forwards;
@@ -27,7 +27,6 @@
             transform: translateY(0);
             visibility: visible;
         }
-
     }
 
     .custom-center {
@@ -53,10 +52,7 @@
 
     .carousel-control-next,
     .carousel-control-prev,
-    .carousel-indicators
-
-    /*, .carousel-indicators */
-        {
+    .carousel-indicators {
         filter: invert(100%);
     }
 
@@ -64,9 +60,6 @@
         opacity: 0.8;
     }
 </style>
-
-<!-- js file -->
-
 
 <head>
     <!-- Required meta tags -->
@@ -111,15 +104,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><b>Home</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authenticate' %}">Authenticate</a>
+                        <a class="nav-link" href="{% url 'authenticate' %}"><b>Authenticate</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view-profile' %}">Pofile</a>
+                        <a class="nav-link" href="{% url 'contact' %}"><b>Contact</b></a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown
@@ -132,10 +125,13 @@
                             </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     {% if request.session.email %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        <a class="nav-link" href="{% url 'view-profile' %}"><b>View Pofile</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}"><b>Log Out</b></a>
                     </li>
                     {% endif %}
                 </ul>
@@ -158,15 +154,15 @@
         </div>
     </nav>
 
-
     <!-- Main Part -->
     <div style="background-color: #e3f2fd;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     {% block content %}
+                    <br>
                     <!-- Sliding Image -->
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                                 class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -196,7 +192,7 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                    </div>
+                    </div> -->
                     <!-- Sliding Image -->
                     <div class="custom-center">
                         <h1>Welcome to Lost & Found</h1>

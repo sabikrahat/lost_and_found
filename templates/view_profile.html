@@ -8,12 +8,12 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/view_profile.css' %}">
 
 <script>
- var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
+  var myModal = document.getElementById('myModal')
+  var myInput = document.getElementById('myInput')
 
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})
+  myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+  })
 </script>
 
 {% if messages %}
@@ -71,61 +71,65 @@ myModal.addEventListener('shown.bs.modal', function () {
                   Message
                 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel" style="align-items: center; text-align: center;">Contact</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <style>
-          .ccard {
-              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-              transition: 0.3s;
-              border-radius: 15px;
-              padding: 0.5em;
-              height: 90%;
-              background-color: #d0e8fa;
-              /* 5px rounded corners */
-          }
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"
+                          style="align-items: center; text-align: center;">Contact</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
 
-          .ccard:hover {
-              box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-              cursor: pointer;
-          }
-      </style>
+                        <!-- popup card icon design -->
+                        <style>
+                          .ccard {
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                            transition: 0.3s;
+                            border-radius: 15px;
+                            padding: 0.5em;
+                            height: 90%;
+                            background-color: #d0e8fa;
+                            /* 5px rounded corners */
+                          }
 
-<div class="row justify-content-evenly">
-  <div class="col-3 justify-content-evenly">
-      <div class="ccard" >
-        <a target="_blank" href="{{user.whatsappUrl}}"><img src="{% static 'images/whatsapp.png' %}" alt="Avatar" height="58px"></a>
-      </div>
-  </div>
-  <div class="col-3 justify-content-evenly">
-      <div class="ccard">
-        <a target="_blank" href="{{user.messengerUrl}}"><img src="{% static 'images/messenger.png' %}" alt="Avatar" height="48px" ></a>
-      </div>
-  </div>
-  <div class="col-3 justify-content-evenly">
-      <div class="ccard">
-        <a target="_blank" href="{{user.telegramUrl}}"><img src="{% static 'images/telegram.png' %}" alt="Avatar" height="48px"></a>
-      </div>
-  </div>
-</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: #0b5ed7;">Close</button>
-        <!--<button type="button" class="btn btn-primary">Understood</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+                          .ccard:hover {
+                            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+                            cursor: pointer;
+                          }
+                        </style>
 
-
-                
-              
+                        <div class="row justify-content-evenly">
+                          <div class="col-3 justify-content-evenly">
+                            <div class="ccard">
+                              <a target="_blank" href="{{user.whatsappUrl}}"><img
+                                  src="{% static 'images/whatsapp.png' %}" alt="Avatar" height="58px"
+                                  style="padding-bottom: 5px;"></a>
+                            </div>
+                          </div>
+                          <div class="col-3 justify-content-evenly">
+                            <div class="ccard">
+                              <a target="_blank" href="{{user.messengerUrl}}"><img
+                                  src="{% static 'images/messenger.png' %}" alt="Avatar" height="48px"></a>
+                            </div>
+                          </div>
+                          <div class="col-3 justify-content-evenly">
+                            <div class="ccard">
+                              <a target="_blank" href="{{user.telegramUrl}}"><img
+                                  src="{% static 'images/telegram.png' %}" alt="Avatar" height="48px"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                          style="background-color: #0b5ed7;">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
