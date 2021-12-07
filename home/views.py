@@ -141,10 +141,10 @@ def edit_profile(request):
             messages.error(request, 'You need to login first')
             return redirect('authenticate')
 
-# feedback function
+# contact function
 
 
-def feedback(request):
+def contact(request):
     try:
         user = UserModel.objects.get(email=request.session['email'])
 
@@ -161,7 +161,18 @@ def feedback(request):
                 time.sleep(3)
                 return redirect('/')
         else:
-            return render(request, 'feedback.html', {'user': user})
+            return render(request, 'contact.html', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('authenticate')
+
+# feedback functon
+
+
+def feedback(request):
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        return render(request, 'feedback.html', {'user': user})
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
