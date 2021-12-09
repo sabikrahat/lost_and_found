@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 
-def filepath(request, filename):
+def filepath(filename):
     old_filename = filename
     timeNow = datetime.now().strftime('%Y%m%d%H:%M:%S')
     filename = "%s-%s" % (timeNow, old_filename)
@@ -18,14 +18,15 @@ class UserModel(models.Model):
     password = models.CharField(max_length=1024)
     phoneNumber = models.CharField(max_length=15)
     bio = models.CharField(max_length=1024)
-    location = models.CharField(max_length=30)
-    messengerUrl = models.CharField(max_length=30)
-    whatsappUrl = models.CharField(max_length=30)
-    telegramUrl = models.CharField(max_length=30)
+    location = models.CharField(max_length=50)
+    messengerUrl = models.CharField(max_length=100)
+    whatsappUrl = models.CharField(max_length=100)
+    telegramUrl = models.CharField(max_length=100)
     profileImg = models.ImageField(upload_to=filepath, null=True, blank=True)
     nidFrontImg = models.ImageField(upload_to=filepath, null=True, blank=True)
     nidBackImg = models.ImageField(upload_to=filepath, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         db_table = 'app_users'
 
@@ -47,7 +48,7 @@ class ResetPwdTokens(models.Model):
         return self.user.email
 
 
-class UserFeedback(models.Model):
+class UserContact(models.Model):
     messengerId = models.CharField(max_length=10)
     messengerName = models.CharField(max_length=50)
     messengerEmail = models.CharField(max_length=40)

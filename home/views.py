@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from home.models import ResetPwdTokens, UserFeedback, UserModel
+from home.models import ResetPwdTokens, UserContact, UserModel
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
@@ -150,14 +150,14 @@ def contact(request):
 
         if request.method == 'POST':
             if request.POST.get('txtname') and request.POST.get('txtEmail') and request.POST.get('txtMsg'):
-                saveFeedback = UserFeedback()
+                saveContact = UserContact()
 
-                saveFeedback.messengerId = user.id
-                saveFeedback.messengerName = user.name
-                saveFeedback.messengerEmail = user.email
-                saveFeedback.message = request.POST.get('txtMsg')
+                saveContact.messengerId = user.id
+                saveContact.messengerName = user.name
+                saveContact.messengerEmail = user.email
+                saveContact.message = request.POST.get('txtMsg')
 
-                saveFeedback.save()
+                saveContact.save()
                 time.sleep(3)
                 return redirect('/')
         else:
