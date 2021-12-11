@@ -9,6 +9,8 @@
 <!-- Dev Kawshik Branch -->
 
 <!--Css file-->
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"> -->
+
 <style>
     .container-fluid {
         animation: movedown 1s linear;
@@ -160,8 +162,91 @@
             <div class="col-12">
                 {% block content %}
                 <br>
+
+                <!--CSS File-->
+        <style>
+
+            .card {
+                background-color: #e0f3fcfb;
+                    box-shadow: 15px 15px 10px rgb(78, 77, 77);
+            }
+            /* .card-header:hover {
+                background: rgb(11, 22, 83) !important;
+                color: whitesmoke !important;
+                transition: 0.1s ease-in; 
+            } */
+            /* .card-header {
+                color: black !important;
+                background: rgb(152, 214, 230) !important;
+                transition: 0.3s ease-in;
+            } */
+            .card img {
+                width:310px;
+                height: 280px;
+            }
+            .card:hover {
+                opacity: 0.9;
+                transform: scale(1.02);
+                transition: 0.5s ease;
+            } 
+            .card-img-top:hover {
+                opacity: 0.9;
+                transform: scale(1.02);
+                transition: 0.2s ease;
+            }
+            .col-md-3 .card {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+
+
+                    <hr> <br>
+                    <div class="row">
+                    <div class="col-md-3">
+                        <a href="{% url 'view-profile' %}">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'images/lost.jpg' %}" alt="Notes image">
+                            <div class="card-body">
+                            <h5 class="card-title ">
+                                Profile
+                            </h5>
+                            View & update your Profile
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    
+                <div class="col-md-3">
+                    <a href="#">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'images/and.jpg' %}" alt="Notes image">
+                        <div class="card-body">
+                        <h5 class="card-title ">
+                            Homework
+                        </h5>
+                        Add homeworks and assign them deadlines. They will be displayed prioritised by deadlines
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'authenticate' %}">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static 'images/question_mark.png' %}" alt="Notes image">
+                        <div class="card-body">
+                        <h5 class="card-title ">
+                            Sign Up & Sign In
+                        </h5>
+                        Create a account to find your lost products
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+
                 <!-- Sliding Image -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                             class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -191,7 +276,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                </div>
+                </div> -->
                 <!-- Sliding Image -->
                 <div class="custom-center">
                     <h1>Welcome to Lost & Found</h1>
@@ -200,7 +285,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <!-- Footer -->
     <div class="container-footer" style="background-color: #e3f2fd;">
         <footer class="footer mt-auto py-3 text-muted text-center text-small ">
