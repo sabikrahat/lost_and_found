@@ -170,9 +170,5 @@ def contact(request):
 
 
 def feedback(request):
-    try:
-        user = UserModel.objects.get(email=request.session['email'])
-        return render(request, 'feedback.html', {'user': user})
-    except:
-        messages.error(request, 'You need to login first')
-        return redirect('authenticate')
+    return render(request, 'feedback.html')
+        
