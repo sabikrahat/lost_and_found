@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from home.models import ResetPwdTokens, UserContact, UserModel
+from home.models import ResetPwdTokens, UserContact, UserFeedback, UserModel
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
@@ -177,7 +177,19 @@ def contact(request):
 def feedback(request):
     try:
         user = UserModel.objects.get(email=request.session['email'])
-        return render(request, 'feedback.html', {'user': user})
+        if request.method == 'POST':
+            if request.POST.get('feedbackMsg'):
+                saveFeedback = UserFeedback()
+
+                saveFeedback.messengerId = user.id
+                saveFeedback.messengerName = user.name
+                saveFeedback.messengerEmail = user.email
+                saveFeedback.message = request.POST.get('feedbackMsg')
+
+                saveFeedback.save()
+                return redirect('/')
+        else:
+            return render(request, 'feedback.html', {'user': user})
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
@@ -243,5 +255,3 @@ def change_password(request, token):
         print(e)
         messages.error(request, 'url has already been used.')
         return render(request, 'reset_password/change-password.html', context)
-
-        
