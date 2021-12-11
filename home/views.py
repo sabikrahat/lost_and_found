@@ -243,3 +243,5 @@ def change_password(request, token):
         print(e)
         messages.error(request, 'url has already been used.')
         return render(request, 'reset_password/change-password.html', context)
+
+        
