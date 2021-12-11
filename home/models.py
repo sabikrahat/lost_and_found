@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 
-def filepath(filename):
+def filepath(request, filename):
     old_filename = filename
     timeNow = datetime.now().strftime('%Y%m%d%H:%M:%S')
     filename = "%s-%s" % (timeNow, old_filename)
@@ -18,6 +18,7 @@ class UserModel(models.Model):
     password = models.CharField(max_length=1024)
     phoneNumber = models.CharField(max_length=15)
     bio = models.CharField(max_length=1024)
+    completeProfile = models.CharField(max_length=5)
     location = models.CharField(max_length=50)
     messengerUrl = models.CharField(max_length=100)
     whatsappUrl = models.CharField(max_length=100)
@@ -49,6 +50,17 @@ class ResetPwdTokens(models.Model):
 
 
 class UserContact(models.Model):
+    messengerId = models.CharField(max_length=10)
+    messengerName = models.CharField(max_length=50)
+    messengerEmail = models.CharField(max_length=40)
+    message = models.CharField(max_length=3072)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'users_contacts'
+
+
+class UserFeedback(models.Model):
     messengerId = models.CharField(max_length=10)
     messengerName = models.CharField(max_length=50)
     messengerEmail = models.CharField(max_length=40)

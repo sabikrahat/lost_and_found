@@ -1,5 +1,5 @@
 from django.test import TestCase
-from home.models import UserContact, UserModel
+from home.models import UserContact, UserFeedback, UserModel
 
 # Create your tests here.
 
@@ -10,7 +10,9 @@ class TestClass(TestCase):
     def setUpTestData(cls):
         UserModel.objects.create(name='Alice', email='alice@gmail.com')
         UserContact.objects.create(
-            messengerName='Alice', messengerEmail='alice@gmail.com', message='Useful Website')
+            messengerName='Alice', messengerEmail='alice@gmail.com', message='Test Contact')
+        UserFeedback.objects.create(
+            messengerName='Alice', messengerEmail='alice@gmail.com', message='Test Feedback')
 
     def test_user_name(self):
         user = UserModel.objects.get(id=1)
@@ -34,14 +36,33 @@ class TestClass(TestCase):
 
     def test_user_contactobject(self):
         contact = UserContact.objects.create(
-            messengerName='Charlie', messengerEmail='charlie@gmail.com', message='Useful Website')
+            messengerName='Charlie', messengerEmail='charlie@gmail.com', message='Testing Contact')
         object_name = f'{contact.messengerName}'
         object_email = f'{contact.messengerEmail}'
         object_message = f'{contact.message}'
         # print("Method: Checking/Matching name, email and message")
         self.assertEqual('Charlie', object_name, "Testing Name")
         self.assertEqual('charlie@gmail.com', object_email, "Testing Email")
-        self.assertEqual('Useful Website', object_message, "Testing Message")
+        self.assertEqual('Testing Contact', object_message, "Testing Contact")
+
+    def test_feedback_user_name(self):
+        user = UserFeedback.objects.get(id=1)
+        name = user._meta.get_field('messengerName').verbose_name
+        # print("Method: testing name field")
+        self.assertEqual(name, 'messengerName',
+                         "Testing name in user feedback")
+
+    def test_user_feedbackobject(self):
+        feedback = UserFeedback.objects.create(
+            messengerName='Charlie', messengerEmail='charlie@gmail.com', message='Testing Feedback')
+        object_name = f'{feedback.messengerName}'
+        object_email = f'{feedback.messengerEmail}'
+        object_message = f'{feedback.message}'
+        # print("Method: Checking/Matching name, email and message")
+        self.assertEqual('Charlie', object_name, "Testing Name")
+        self.assertEqual('charlie@gmail.com', object_email, "Testing Email")
+        self.assertEqual('Testing Feedback',
+                         object_message, "Testing Feedback")
 
     # def test_createRestaurant(self):
     #     res1 = Restaurant.objects.create(
