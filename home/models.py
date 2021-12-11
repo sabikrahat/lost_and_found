@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 
-def filepath(filename):
+def filepath(request, filename):
     old_filename = filename
     timeNow = datetime.now().strftime('%Y%m%d%H:%M:%S')
     filename = "%s-%s" % (timeNow, old_filename)
@@ -18,6 +18,7 @@ class UserModel(models.Model):
     password = models.CharField(max_length=1024)
     phoneNumber = models.CharField(max_length=15)
     bio = models.CharField(max_length=1024)
+    completeProfile = models.CharField(max_length=5)
     location = models.CharField(max_length=50)
     messengerUrl = models.CharField(max_length=100)
     whatsappUrl = models.CharField(max_length=100)
