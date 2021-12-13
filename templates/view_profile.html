@@ -75,9 +75,15 @@
                 {% endif %}
 
                 <!--pop up-->
+                {% if user.whatsappUrl and user.messengerUrl and user.telegramUrl %}
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                   Message
                 </button>
+                {% else %}
+                <button type="button" class="btn btn-primary" onclick="location.href='edit-profile'">
+                  Message
+                </button>
+                {% endif %}
 
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -235,6 +241,10 @@
                 &emsp;
                 <a href="{% url 'edit-profile' %}"><button type="button" class="btn btn-primary">Edit
                     Profile</button></a>
+              </div>
+              <div class="col-4"></div>
+              <div class="col-2"><button type="button"
+                  class="btn btn-warning"><b>💰&nbsp;{{user.point}}&nbsp;points</b></button>
               </div>
             </div>
           </div>

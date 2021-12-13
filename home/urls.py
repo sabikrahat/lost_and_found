@@ -11,6 +11,8 @@ urlpatterns = [
     path('terms-and-conditions', views.terms_and_conditions,
          name="terms-and-conditions"),
     path('contact', views.contact, name="contact"),
+    path('location', views.location, name="location"),
+    path('write-post', views.write_post, name="write-post"),
     path('feedback', views.feedback, name="feedback"),
     path('view-profile', views.view_profile, name="view-profile"),
     path('edit-profile', views.edit_profile, name="edit-profile"),

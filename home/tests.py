@@ -1,5 +1,5 @@
 from django.test import TestCase
-from home.models import UserContact, UserFeedback, UserModel
+from home.models import PostModel, UserContact, UserFeedback, UserModel
 
 # Create your tests here.
 
@@ -9,10 +9,9 @@ class TestClass(TestCase):
     @classmethod
     def setUpTestData(cls):
         UserModel.objects.create(name='Alice', email='alice@gmail.com')
-        UserContact.objects.create(
-            messengerName='Alice', messengerEmail='alice@gmail.com', message='Test Contact')
-        UserFeedback.objects.create(
-            messengerName='Alice', messengerEmail='alice@gmail.com', message='Test Feedback')
+        UserContact.objects.create(messengerName='Alice', messengerEmail='alice@gmail.com', message='Test Contact')
+        UserFeedback.objects.create( messengerName='Alice', messengerEmail='alice@gmail.com', message='Test Feedback')
+        PostModel.objects.create(title='Test Title', description='Test Description', location='Test Location')
 
     def test_user_name(self):
         user = UserModel.objects.get(id=1)
@@ -49,8 +48,7 @@ class TestClass(TestCase):
         user = UserFeedback.objects.get(id=1)
         name = user._meta.get_field('messengerName').verbose_name
         # print("Method: testing name field")
-        self.assertEqual(name, 'messengerName',
-                         "Testing name in user feedback")
+        self.assertEqual(name, 'messengerName', "Testing name in user feedback")
 
     def test_user_feedbackobject(self):
         feedback = UserFeedback.objects.create(
@@ -61,8 +59,24 @@ class TestClass(TestCase):
         # print("Method: Checking/Matching name, email and message")
         self.assertEqual('Charlie', object_name, "Testing Name")
         self.assertEqual('charlie@gmail.com', object_email, "Testing Email")
-        self.assertEqual('Testing Feedback',
-                         object_message, "Testing Feedback")
+        self.assertEqual('Testing Feedback', object_message, "Testing Feedback")
+
+    def test_user_post_title(self):
+        post = PostModel.objects.get(id=1)
+        title = post._meta.get_field('title').verbose_name
+        # print("Method: testing title field")
+        self.assertEqual(title, 'title', "Testing title in user posts")
+
+    def test_user_postobject(self):
+        post = PostModel.objects.create(
+            title='Test Title', description='Test Description', location='Test Location')
+        object_title = f'{post.title}'
+        object_description = f'{post.description}'
+        object_location = f'{post.location}'
+        # print("Method: Checking/Matching title, description and location")
+        self.assertEqual('Test Title', object_title, "Testing Title")
+        self.assertEqual('Test Description', object_description, "Testing Description")
+        self.assertEqual('Test Location', object_location, "Testing Location")
 
     # def test_createRestaurant(self):
     #     res1 = Restaurant.objects.create(

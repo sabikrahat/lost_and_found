@@ -4,6 +4,19 @@
 {% block content %}
 {% load static %}
 
+{% if messages %}
+{% for result in messages %}
+{% if result.tags == "error" %}
+<div class="alert alert-danger">
+        {{ result }}
+</div>
+{% else %}
+<div class="alert alert-success">
+        {{ result }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
 <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container rounded bg-white mt-5 mb-5">

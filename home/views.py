@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from home.models import ResetPwdTokens, UserContact, UserFeedback, UserModel
+from home.models import PostModel, ResetPwdTokens, UserContact, UserFeedback, UserModel
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
@@ -38,6 +38,7 @@ def signup(request):
             saveUser.email = request.POST.get('email')
             saveUser.password = make_password(request.POST.get('password'))
             saveUser.completeProfile = '25%'
+            saveUser.point = '100'
 
             if saveUser.isExists():
                 messages.error(
@@ -212,7 +213,8 @@ def forget_password(request):
         resetPwdToken_obj.forget_password_token = token
         resetPwdToken_obj.save()
         send_forget_password_mail(user_obj.email, token)
-        messages.success(request, 'An email is sent.')
+        messages.success(request, 'An email has been sent to ' + user_obj.email +
+                         '. If you don\'t find any email in your mailbox, please check spam folder.')
         return render(request, 'reset_password/forget-password.html')
 
     except Exception as e:
@@ -255,3 +257,48 @@ def change_password(request, token):
         print(e)
         messages.error(request, 'url has already been used.')
         return render(request, 'reset_password/change-password.html', context)
+
+# location api function
+
+
+def location(request):
+    return render(request, 'location.html')
+
+# write post function
+
+
+def write_post(request):
+    # return render(request, 'write_post.html')
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        if user.completeProfile == '100%':
+            if request.method == 'POST':
+                if request.POST.get('title') and request.POST.get('location') and request.POST.get('description'):
+
+                    savePost = PostModel()
+
+                    savePost.publisherId = user.id
+                    savePost.publisherName = user.name
+                    savePost.title = request.POST.get('title')
+                    savePost.description = request.POST.get('description')
+                    savePost.location = request.POST.get('location')
+
+                    if len(request.FILES) != 0:
+                        savePost.fileImg = request.FILES['fileImg']
+                        savePost.fileSecretImg = request.FILES['fileSecretImg']
+
+                    user.point = str(int(user.point) + 50)
+
+                    user.save()
+                    savePost.save()
+
+                    messages.success(request, "Your post has been submitted!")
+                    return redirect('/')
+            else:
+                return render(request, 'write_post.html', {'user': user})
+        else:
+            messages.success(request, "Complete your profile first!")
+            return render(request, 'edit_profile.html', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('authenticate')

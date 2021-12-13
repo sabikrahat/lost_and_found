@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title> Create Post </title>
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/write_post.css'%}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="left-side">
+                <div class="address details">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="topic">Address</div>
+                    <div class="text-one">{{user.location}}</div>
+                    <!-- <div class="text-two">Birendranagar 06</div> -->
+                </div>
+                <div class="phone details">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="topic">Phone</div>
+                    <div class="text-one">{{user.phoneNumber}}</div>
+                    <!-- <div class="text-two">+0096 3434 5678</div> -->
+                </div>
+                <div class="email details">
+                    <i class="fas fa-envelope"></i>
+                    <div class="topic">Email</div>
+                    <div class="text-one">{{user.email}}</div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="topic-text">Give us necessary information</div>
+                <p>Please give us specific information of the product you picked up. So that we can find out the actual
+                    owner of this product.</p>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-box">
+                        <input type="text" name="title" placeholder="Enter a product title" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" name="location" placeholder="Enter the location where you found this....."
+                            required>
+                    </div>
+                    <div class="input-box message-box">
+                        <textarea name="description" placeholder="Enter a short description here......"
+                            required></textarea>
+                    </div>
+                    <label for="fileImg"><b>Upload a preview image*</b></label>
+                    <input id="fileImg" class="filechng" type="file" placeholder="Choose a file" name="fileImg"
+                        required>
+                    <label for="fileSecretImg"><b>Upload a secret identification image*</b></label>
+                    <input id="fileSecretImg" class="filechng" type="file" placeholder="Choose a file"
+                        name="fileSecretImg" required>
+
+                    <input
+                        style="color: #fff; font-size: 18px; outline: none; width: 150px; border: none; padding: 8px 16px; border-radius: 6px; background: #3e2093; cursor: pointer; transition: all 0.3s ease !important"
+                        type="submit" value="Upload Now">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
