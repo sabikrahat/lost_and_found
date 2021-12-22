@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.db import connection
 import time
 import uuid
-
 from lost_and_found.mail_service import send_forget_password_mail
 
 # Create your views here.
@@ -280,7 +279,7 @@ def write_post(request):
         user = UserModel.objects.get(email=request.session['email'])
         if user.completeProfile == '100%':
             if request.method == 'POST':
-                if request.POST.get('title') and request.POST.get('location') and request.POST.get('description'):
+                if request.POST.get('title') and request.POST.get('location') and request.POST.get('description') and request.POST.get('datetime'):
 
                     savePost = PostModel()
 
@@ -289,6 +288,7 @@ def write_post(request):
                     savePost.title = request.POST.get('title')
                     savePost.description = request.POST.get('description')
                     savePost.location = request.POST.get('location')
+                    savePost.lostDateTime = request.POST.get('datetime')
 
                     if len(request.FILES) != 0:
                         savePost.fileImg = request.FILES['fileImg']

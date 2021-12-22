@@ -78,6 +78,7 @@ class PostModel(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=3072)
     location = models.CharField(max_length=50)
+    lostDateTime = models.CharField(max_length=50)
     fileImg = models.ImageField(upload_to=filepath, null=True, blank=True)
     fileSecretImg = models.ImageField(upload_to=filepath, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

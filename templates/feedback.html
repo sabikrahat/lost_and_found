@@ -159,8 +159,8 @@
     width: 100%;
     border: 1px solid #444;
     outline: none;
-    background: rgb(2, 183, 255);
-    color: rgb(73, 69, 69);
+    background: blue;
+    color: white;
     font-size: 17px;
     font-weight: 500;
     /* text-transform: uppercase; */
@@ -169,7 +169,7 @@
   }
 
   form .btn button:hover {
-    background: #c2def0;
+    background: rgb(28, 28, 223);
   }
 </style>
 
@@ -212,7 +212,7 @@
         {% csrf_token %}
         <header></header>
         <div class="textarea">
-          <textarea cols="30" placeholder="Describe your experience.." name="feedbackMsg"></textarea>
+          <textarea cols="30" placeholder="Describe your experience.." name="feedbackMsg" required></textarea>
         </div>
         <div class="btn">
           <button type="submit">Submit your Feedback</button>
