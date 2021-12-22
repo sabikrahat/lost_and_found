@@ -3,6 +3,7 @@ from home.models import PostModel, ResetPwdTokens, UserContact, UserFeedback, Us
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
+from django.db import connection
 import time
 import uuid
 
@@ -15,7 +16,12 @@ from lost_and_found.mail_service import send_forget_password_mail
 
 
 def home(request):
-    return render(request, 'home.html')
+    cursor = connection.cursor()
+    cursor.execute(
+        'SELECT * FROM user_posts ORDER BY id DESC;')
+    posts = cursor.fetchall()
+    cursor.close()
+    return render(request, 'home.html', {'posts': posts})
 
 
 # authentication function
@@ -118,7 +124,7 @@ def view_profile(request):
 def edit_profile(request):
     if request.method == 'POST':
         user = UserModel.objects.get(email=request.session['email'])
-        if request.POST.get('editName') and request.POST.get('editPhn') and request.POST.get('editLocation') and request.POST.get('editBio') and request.POST.get('editMessengerUrl') and request.POST.get('editWhatsappUrl') and request.POST.get('editTelegramUrl'):
+        if request.POST.get('editName') and request.POST.get('editPhn') and request.POST.get('editLocation') and request.POST.get('editBio') and request.POST.get('editMessengerUrl') and request.POST.get('editWhatsappUrl'):
 
             user.name = request.POST.get('editName')
             user.phoneNumber = request.POST.get('editPhn')
@@ -126,7 +132,8 @@ def edit_profile(request):
             user.bio = request.POST.get('editBio')
             user.messengerUrl = request.POST.get('editMessengerUrl')
             user.whatsappUrl = request.POST.get('editWhatsappUrl')
-            user.telegramUrl = request.POST.get('editTelegramUrl')
+            if request.POST.get('editTelegramUrl'):
+                user.telegramUrl = request.POST.get('editTelegramUrl')
             user.completeProfile = '100%'
 
             if len(request.FILES) != 0:
@@ -297,8 +304,8 @@ def write_post(request):
             else:
                 return render(request, 'write_post.html', {'user': user})
         else:
-            messages.success(request, "Complete your profile first!")
-            return render(request, 'edit_profile.html', {'user': user})
+            messages.error(request, "Complete your profile first!")
+            return render(request, 'view_profile.html', {'user': user})
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')

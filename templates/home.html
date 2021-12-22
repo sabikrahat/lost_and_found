@@ -195,64 +195,45 @@
                 <div class="row justify-content-center" style="margin-left: 1.5em; align-items: center;">
                     <div class="col-lg-5">
                         <button type="button" class="btn btn-primary btn-lg btn-block"
-                            onclick="location.href='write-post'">Want to find the real Owner of
+                            onclick="location.href='write-post'">Want to find
+                            the real Owner of
                             your
                             picked up materials?</button>
                     </div>
                 </div>
                 <br>
-
-                <!-- Write Post -->
-                <!-- <div style="border-style: dashed; padding: 1em; border-radius: 15px; border-color: cornflowerblue;">
-                    <div class="col">
-                        <div class="form-group">
-                            <input type="text" name="questionTitle" class="form-control" placeholder="Title *"
-                                required />
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <textarea name="questionCode" class="form-control"
-                                placeholder="Please give a short description here.... *"
-                                style="width: 100%; height: 180px;"></textarea>
-                        </div>
-                    </div>
-
-                </div>
-                <br> -->
-                <!-- Write Post -->
-
-
-
-                <!--CSS File-->
                 <style>
                     .card {
                         background-color: #e0f3fcfb;
                         box-shadow: 15px 15px 10px rgb(78, 77, 77);
                     }
 
-                    .card img {
+                    /* .card img {
                         width: 310px;
                         height: 280px;
-                    }
+                    } */
 
                     .card:hover {
                         opacity: 0.9;
                         transform: scale(1.02);
                         transition: 0.5s ease;
                     }
-
-                    .card-img-top:hover {
-                        opacity: 0.9;
-                        transform: scale(1.02);
-                        transition: 0.2s ease;
-                    }
-
-                    .col-md-3 .card {
-                        width: 100%;
-                        height: 100%;
-                    }
                 </style>
-                <div class="row">
+                {% if posts|length %}
+                {% for post in posts %}
+                <div class="card" style="width: 18rem; ">
+                    <img class="card-img-top" src="{{post.6}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.3}}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's
+                            content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- <div class="row">
                     <div class="col-md-3">
                         <a href="{% url 'view-profile' %}">
                             <div class="card">
@@ -295,11 +276,18 @@
                             </div>
                         </a>
                     </div>
-                    <div class="custom-center">
-                        <h1>Welcome to Lost & Found</h1>
-                    </div>
-                    {% endblock %}
+                </div> -->
+                <!-- <div class="custom-center">
+                    <h1>Welcome to Lost & Found</h1>
+                </div> -->
+                {% else %}
+                <div class="custom-center">
+                    <br>
+                    <h5> Sorry! No items of this type found.</h5>
                 </div>
+
+                {% endif %}
+                {% endblock %}
             </div>
         </div>
     </div>
