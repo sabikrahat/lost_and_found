@@ -9,7 +9,7 @@
     function getCoordintes() {
         var options = {
             enableHighAccuracy: true,
-            timeout: 5000,
+            timeout: 500,
             maximumAge: 0
         };
 
@@ -42,29 +42,36 @@
         xhr.send();
         xhr.onreadystatechange = processRequest;
         xhr.addEventListener("readystatechange", processRequest, false);
+
         function processRequest(e) {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var response = JSON.parse(xhr.responseText);
-                var state = response.address.road;
+                var area = response.address.suburb;
+                var location = response.address.quarter;
+                var road = response.address.road;
                 var city = response.address.city;
                 var country = response.address.country;
-                document.getElementById("demo").innerHTML = state + ', ' + city + ', ' + country;
+                console.log(city);
+
+
+                document.getElementById("demo").innerHTML = area + ', ' + location + ', ' + city + ', ' + country;
                 return;
             }
         }
     }
-    getCoordintes();
+    // getCoordintes();
 
 </script>
 
 <div class="custom-center">
-    <div>
-        <p id="demo"></p>
-    </div>
     <hr>
     <hr>
     <div>
-        <button type="button" class="btn btn-success">Get Current Location</button>
+        <button type="click" class="btn btn-success" onclick="return getCoordintes();">Get Current Location </button>
+        <div>
+            <p id="demo"></p>
+        </div>
+
     </div>
 </div>
 {% endblock %}
