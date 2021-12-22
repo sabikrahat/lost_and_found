@@ -3,20 +3,8 @@
 {% block title %}Edit Profile{% endblock %}
 {% block content %}
 {% load static %}
+<script src="{%static 'js/location.js' %}"></script>
 
-{% if messages %}
-{% for result in messages %}
-{% if result.tags == "error" %}
-<div class="alert alert-danger">
-        {{ result }}
-</div>
-{% else %}
-<div class="alert alert-success">
-        {{ result }}
-</div>
-{% endif %}
-{% endfor %}
-{% endif %}
 <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container rounded bg-white mt-5 mb-5">
@@ -59,17 +47,19 @@
                                                                 placeholder="Enter phone number" name="editPhn"
                                                                 value="{{user.phoneNumber}}">
                                                 </div>
+
                                                 <div class="row mt-3">
                                                         <div class="col-md-8"><label
                                                                         class="labels">Address</label><input type="text"
                                                                         class="form-control"
                                                                         placeholder="Enter your address"
-                                                                        name="editLocation" required
+                                                                        name="editLocation" required id="location_field"
                                                                         value="{{user.location}}"></div>
-                                                        <div class="col-md-4"><label class="labels">Tap here
-                                                                        👇</label><button
-                                                                        class="btn btn-primary profile-button"
-                                                                        type="button">Get
+                                                        <!-- <p id="location_field"></p> -->
+                                                        <div class="col-md-4"><label class="labels">Tap here👇</label>
+                                                                <button class="btn btn-primary profile-button"
+                                                                        type="button"
+                                                                        onclick="return getCoordintes();">Get
                                                                         Location</button>
                                                         </div>
                                                 </div>
@@ -105,7 +95,8 @@
                                                 <div class="col-md-12"><label class="labels">Telegram Url</label><input
                                                                 type="text" class="form-control"
                                                                 placeholder="Enter your telegram url here"
-                                                                name="editTelegramUrl" value="{{user.telegramUrl}}">
+                                                                name="editTelegramUrl" required
+                                                                value="{{user.telegramUrl}}">
                                                 </div>
                                                 <br>
                                                 <br>
