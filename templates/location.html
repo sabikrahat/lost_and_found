@@ -3,17 +3,17 @@
 {% block title %}Privacy Policy{% endblock %}
 {% block content %}
 {% load static %}
- 
+
 
 <script>
     // Step 1: Get user coordinates
     function getCoordintes() {
         var options = {
             enableHighAccuracy: true,
-            timeout: 5000,
+            timeout: 500,
             maximumAge: 0
         };
- 
+
         function success(pos) {
             var crd = pos.coords;
             var lat = crd.latitude.toString();
@@ -22,28 +22,28 @@
             console.log(`Latitude: ${lat}, Longitude: ${lng}`);
             getCity(coordinates);
             return;
- 
+
         }
- 
+
         function error(err) {
             console.warn(`ERROR(${err.code}): ${err.message}`);
         }
- 
+
         navigator.geolocation.getCurrentPosition(success, error, options);
     }
- 
+
     // Step 2: Get city name
     function getCity(coordinates) {
         var xhr = new XMLHttpRequest();
         var lat = coordinates[0];
         var lng = coordinates[1];
- 
+
         // Paste your LocationIQ token below.
         xhr.open('GET', "https://us1.locationiq.com/v1/reverse.php?key=pk.273a0413bf061fe7b78301f70ccaee46&lat=" + lat + "&lon=" + lng + "&format=json", true);
         xhr.send();
         xhr.onreadystatechange = processRequest;
         xhr.addEventListener("readystatechange", processRequest, false);
- 
+
         function processRequest(e) {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var response = JSON.parse(xhr.responseText);
@@ -55,25 +55,25 @@
                 console.log(city);
 
 
-                document.getElementById("demo").innerHTML =  area + ', ' + location + ', '+ road + ', '+ city + ', ' + country;
+                document.getElementById("demo").innerHTML = area + ', ' + location + ', ' + city + ', ' + country;
                 return;
             }
         }
     }
-    getCoordintes();
- 
+    // getCoordintes();
+
 </script>
- 
+
 <div class="custom-center">
-    
+
     <hr>
     <hr>
     <div>
-        <button type="click" class="btn btn-success" onclick="(demo)">Get Current Location </button>
-     <div>
-        <p id="demo"></p>
-    </div> 
+        <button type="click" class="btn btn-success" onclick="return getCoordintes();">Get Current Location </button>
+        <div>
+            <p id="demo"></p>
+        </div>
 
-</div>  
+    </div>
 </div>
 {% endblock %}
