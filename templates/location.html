@@ -49,13 +49,13 @@
                 var response = JSON.parse(xhr.responseText);
                 var area = response.address.suburb;
                 var location = response.address.quarter;
-                var road = response.address.road;
+                // var road = response.address.road;
                 var city = response.address.city;
                 var country = response.address.country;
                 console.log(city);
 
 
-                document.getElementById("demo").innerHTML =  area + ', ' + location + ', '+ road + ', '+ city + ', ' + country;
+                document.getElementById("demo").innerHTML =  area + ', ' + location + ', '+ city + ', ' + country;
                 return;
             }
         }
@@ -69,8 +69,8 @@
     <hr>
     <hr>
     <div>
-        <button type="click" class="btn btn-success" onclick="(demo)">Get Current Location </button>
-     <div>
+        <button type="click" class="btn btn-success" onclick="getCoordintes()">Get Current Location </button>
+    <div>
         <p id="demo"></p>
     </div> 
 
