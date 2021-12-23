@@ -81,63 +81,66 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
+    <script src="{%static 'js/location.js' %}"></script>
+
     <!-- Title -->
     <title>{% block title %}Lost & Found{% endblock %}</title>
 </head>
 
 <body>
-
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{% static 'images/lost-and-found.jpg' %}" height="30px" width="30px"
-                    class="d-inline-block align-top" alt="lost and found image" />
-                <b>&ensp;Lost & Found</b>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><b>Home</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authenticate' %}"><b>Authenticate</b></a>
-                    </li>
+    <div class="sticky-lg-top" style="box-shadow: 5px 5px 5px rgb(167, 165, 165);">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/lost-and-found.jpg' %}" height="30px" width="30px"
+                        class="d-inline-block align-top" alt="lost and found image" />
+                    <b>&ensp;Lost & Found</b>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><b>Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'authenticate' %}"><b>Authenticate</b></a>
+                        </li>
+                        {% if request.session.email %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'view-profile' %}"><b>View Pofile</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}"><b>Log Out</b></a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}"><b>Contact</b></a>
+                        </li>
+                    </ul>
                     {% if request.session.email %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view-profile' %}"><b>View Pofile</b></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}"><b>Log Out</b></a>
-                    </li>
+                    <b>
+                        <p id="nameshow"
+                            style="color: rgb(13, 184, 13); text-align: center; margin: 0.3em; padding-right: 1em;"></p>
+                    </b>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}"><b>Contact</b></a>
-                    </li>
-                </ul>
-                {% if request.session.email %}
-                <b>
-                    <p id="nameshow"
-                        style="color: rgb(13, 184, 13); text-align: center; margin: 0.3em; padding-right: 1em;"></p>
-                </b>
-                {% endif %}
-                <script type="text/javascript">
-                    var email = "{% if request.session.email %}{{ request.session.email }}{% endif %}";
-                    const username = ' | Hello, ' + email.split("@")[0] + ' | ';
-                    document.getElementById("nameshow").innerHTML = username;
-                </script>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                    <script type="text/javascript">
+                        var email = "{% if request.session.email %}{{ request.session.email }}{% endif %}";
+                        const username = ' | Hello, ' + email.split("@")[0] + ' | ';
+                        document.getElementById("nameshow").innerHTML = username;
+                    </script>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <!-- Main Part -->
     <div class="container">
@@ -159,7 +162,7 @@
                 {% endif %}
 
                 <!-- Sliding Image -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+                <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
                     style="margin-left: 3em; margin-right: 3em; margin-top: 1em; margin-bottom: 1em;">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -190,34 +193,87 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                </div>
+                </div> -->
                 <!-- Sliding Image -->
-                <!-- <div class="row m-10">
+
+                <!-- hearder start -->
+                <div class="row justify-content-center"
+                    style="margin-top: 2em; margin-bottom: 2em; align-items: center;">
+                    <div class="col-md-5">
+                        <div class="col">
+                            <div class="row-2">
+                                <h6>Welcome To</h6>
+                            </div>
+                            <div class="row-3">
+                                <h3>Lost and Found</h3>
+                            </div>
+                            <br>
+                            <div class="row-5">
+                                <p>
+                                    Lost & found is a web-based application where a person can easily find his or her
+                                    lost materials and can also help other
+                                    people to find their lost one. A person must show the identity proof to claim of a
+                                    specific material. There will be a
+                                    charge after accepting his or her material ownership from the admin section of the
+                                    website.
+                                </p>
+                            </div>
+                            <div class="row-2">
+                                <button type="button" class="btn btn-outline-primary"
+                                    onclick="location.href='write-post'">
+                                    Submit Found Item
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-7">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <img class="responsive" src="https://www.lostings.com/public/assets/images/image01.png"
+                            height="480px" width="100%;">
+                    </div>
+                </div>
+                <!-- header finished -->
+                <br>
+                <br>
+                <!-- second hearder start -->
+                <div class="row justify-content-center"
+                    style="margin-top: 2em; margin-bottom: 2em; align-items: center;">
+                    <div class="col-md-7">
+                        <img class="responsive" src="https://www.lostings.com/public/images/Lost-and-found.jpg"
+                            height="400px" width="90%;">
                     </div>
                     <div class="col-md-5">
-                        <button type="button" class="btn btn-primary btn-lg btn-block"
-                            onclick="location.href='write-post'">Want to find
-                            the real Owner of
-                            your
-                            picked up materials?</button>
+                        <div class="col">
+                            <div class="row-2">
+                                <h6>Find your</h6>
+                            </div>
+                            <div class="row-3">
+                                <h3>Lost Material by Location</h3>
+                            </div>
+                            <br>
+                            <div class="row-5">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="location_field">Search Location</label>
+                                        <br>
+                                        <input type="Search Location" class="form-control" id="location_field"
+                                            placeholder="Search your location">
+                                    </div>
+                                </form>
+                            </div><br>
+                            <div class="row-2">
+                                <button type="button" class="btn btn-outline-primary" onclick="return getCoordintes();">
+                                    Get Current Location
+                                </button>&emsp;
+                                <button type="button" class="btn btn-primary">Search Now</button>
+                            </div>
+                        </div>
                     </div>
-                </div> -->
-                <div class="row justify-content-center" style="margin-left: 1.5em; align-items: center;">
-                    <div class="col-lg-5">
-                        <button type="button" class="btn btn-primary btn-lg btn-block"
-                            onclick="location.href='write-post'">Want to find
-                            the real Owner of
-                            your
-                            picked up materials?</button>
-                    </div>
+
                 </div>
+                <!-- second header finished -->
+                <br>
+                <br>
+                <br>
                 <style>
                     .card {
                         background-color: #e0f3fcfb;
