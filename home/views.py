@@ -11,6 +11,12 @@ from lost_and_found.mail_service import send_forget_password_mail
 # Create your views here.
 
 
+# authentication function
+
+
+def temp(request):
+    return render(request, 'temp.html')
+
 # home function
 
 
