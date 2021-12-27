@@ -110,6 +110,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'authenticate' %}"><b>Authenticate</b></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_page' %}"><b>Admin page</b></a>
+                        </li>
                         {% if request.session.email %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'view-profile' %}"><b>View Pofile</b></a>

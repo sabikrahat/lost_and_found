@@ -29,6 +29,12 @@ def home(request):
 def authenticate(request):
     return render(request, 'authenticate.html')
 
+def admin_page(request):
+    return render(request, 'admin_page.html')
+
+def test(request):
+    return render(request, 'test.html')
+
 
 # signup function
 
