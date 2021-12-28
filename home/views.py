@@ -30,6 +30,8 @@ def home(request):
 def new_home(request):
     return render(request, 'new_home.html')
 
+def post_card(request):
+    return render(request, 'post_card.html')
 
 # authentication function
 

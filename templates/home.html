@@ -137,7 +137,7 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-                    
+
                 </div>
             </div>
         </nav>
@@ -274,7 +274,7 @@
                 <!-- second header finished -->
                 <br>
                 <br>
-                <style>
+                <!-- <style>
                     .card {
                         background-color: #e0f3fcfb;
                         box-shadow: 10px 10px 10px rgb(78, 77, 77);
@@ -306,6 +306,20 @@
                     </div>
 
                     {% endfor %}
+                </div> -->
+                <div>
+                    <!-- css file  -->
+
+                    <link rel="stylesheet" type="text/css" href="{% static 'css/post_card.css'%}" />
+                    <main>
+                        <div class="card"  style="background-image:url('{{post.7}}');">
+                            <div class="info">
+                                <h1 class="title">Product Name</h1>
+                                <p class="description">Location: Malibag, Dhaka
+                                </p>
+                            </div>
+                        </div>
+                    </main>
                 </div>
 
 
