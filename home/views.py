@@ -29,6 +29,14 @@ def home(request):
     return render(request, 'home.html', {'posts': posts})
 
 
+
+# New home-index function
+
+
+def new_home(request):
+    return render(request, 'new_home.html')
+
+
 # authentication function
 
 
