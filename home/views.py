@@ -11,14 +11,7 @@ from lost_and_found.mail_service import send_forget_password_mail
 # Create your views here.
 
 
-# authentication function
-
-
-def temp(request):
-    return render(request, 'temp.html')
-
 # home function
-
 
 def home(request):
     cursor = connection.cursor()
@@ -29,24 +22,10 @@ def home(request):
     return render(request, 'home.html', {'posts': posts})
 
 
-# New home-index function
-
-
-def new_home(request):
-    return render(request, 'new_home.html')
-
-def post_card(request):
-    return render(request, 'post_card.html')
-
 # authentication function
-
 
 def authenticate(request):
     return render(request, 'authenticate.html')
-
-
-def test(request):
-    return render(request, 'test.html')
 
 
 # admin login function
@@ -82,7 +61,6 @@ def admin_panel(request):
 
 # signup function
 
-
 def signup(request):
     if request.method == 'POST':
         if request.POST.get('name') and request.POST.get('email') and request.POST.get('password'):
@@ -113,7 +91,6 @@ def signup(request):
 
 # login function
 
-
 def login(request):
     if request.method == 'POST':
         try:
@@ -133,7 +110,6 @@ def login(request):
 
 # logout function
 
-
 def logout(request):
     try:
         del request.session['email']
@@ -145,7 +121,6 @@ def logout(request):
 
 
 # privacy policy function
-
 
 def privacy_policy(request):
     return render(request, 'privacy_policy.html')
@@ -314,17 +289,10 @@ def change_password(request, token):
         messages.error(request, 'url has already been used.')
         return render(request, 'reset_password/change-password.html', context)
 
-# location api function
-
-
-def location(request):
-    return render(request, 'location.html')
-
 # write post function
 
 
 def write_post(request):
-    # return render(request, 'write_post.html')
     try:
         user = UserModel.objects.get(email=request.session['email'])
         if user.completeProfile == '100%':
@@ -359,3 +327,18 @@ def write_post(request):
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
+
+
+# test html page for developers
+
+
+def rahat(request):
+    return render(request, 'xtemp_rahat.html')
+
+
+def humaira(request):
+    return render(request, 'xtemp_humaira.html')
+
+
+def kawshik(request):
+    return render(request, 'xtemp_kawshik.html')

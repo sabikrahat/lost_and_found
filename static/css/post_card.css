@@ -106,7 +106,7 @@ h1 {
   font-weight: inherit;
   line-height: 1.2;
   color: #1c5b72;
-  font-size: 2.618em;
+  /* font-size: 2.618em; */
 }
 
 @media (min-width: 800px) {
@@ -120,12 +120,12 @@ p {
   line-height: 1.618;
 }
 
-@media (min-width: 800px) {
+/* @media (min-width: 800px) {
   p {
     font-size: 1.3em;
   }
-}
+} */
 a {
-  color: #e03616;
+  /* color: #e03616; */
   text-decoration: none;
 }

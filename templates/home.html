@@ -165,41 +165,6 @@
                 {% endfor %}
                 {% endif %}
 
-                <!-- Sliding Image -->
-                <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
-                    style="margin-left: 3em; margin-right: 3em; margin-top: 1em; margin-bottom: 1em;">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2" color="#red"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{% static 'images/slider-image-1.png' %}" height="480px" width="100%;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/slider-image-2.gif' %}" height="480px" width="100%;">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/slider-image-3.jpg' %}" height="480px" width="100%;">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div> -->
-                <!-- Sliding Image -->
-
                 <!-- hearder start -->
                 <div class="row justify-content-center"
                     style="margin-top: 2em; margin-bottom: 2em; align-items: center;">
@@ -272,7 +237,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- second header finished -->
                 <br>
@@ -309,20 +273,27 @@
                     </div>
                     {% endfor %}
                 </div> -->
-                <div>
-                    <!-- css file  -->
-
-                    <link rel="stylesheet" type="text/css" href="{% static 'css/post_card.css'%}" />
-                    <main>
-                        <div class="card"  style="background-image:url('{{post.7}}');">
-                            <div class="info">
-                                <h1 class="title">Product Name</h1>
-                                <p class="description">Location: Malibag, Dhaka
-                                </p>
-                            </div>
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-md-4">
+                        <div>
+                            <link rel="stylesheet" type="text/css" href="{% static 'css/post_card.css'%}" />
+                            <main>
+                                <div class="card" style="background-image:url('{{post.7}}');">
+                                    <div class="info">
+                                        <h1 class="title">{{post.3}}</h1>
+                                        <p class="description">{{post.4}}</p>
+                                    </div>
+                                </div>
+                            </main>
                         </div>
-                    </main>
+                    </div>
+                    {% endfor %}
                 </div>
+
+
+
+
 
 
                 <br>
@@ -377,13 +348,13 @@
                 <!-- <div class="custom-center">
                     <h1>Welcome to Lost & Found</h1>
                 </div> -->
-                {% else %}
+                <!-- {% else %}
                 <div class="custom-center">
                     <br>
                     <h5> Sorry! No items found.</h5>
                 </div>
 
-                {% endif %}
+                {% endif %} -->
                 {% endblock %}
             </div>
         </div>
