@@ -29,7 +29,6 @@ def home(request):
     return render(request, 'home.html', {'posts': posts})
 
 
-
 # New home-index function
 
 
@@ -43,11 +42,40 @@ def new_home(request):
 def authenticate(request):
     return render(request, 'authenticate.html')
 
-def admin_page(request):
-    return render(request, 'admin_page.html')
 
 def test(request):
     return render(request, 'test.html')
+
+
+# admin login function
+
+def admin_login(request):
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        if request.method == 'POST':
+            if request.POST.get('adminUsername') and request.POST.get('adminPass'):
+                username = request.POST.get('adminUsername')
+                password = request.POST.get('adminPass')
+                if username == 'admin' and password == 'admin':
+                    return redirect('admin-panel')
+                else:
+                    messages.error(request, 'Password incorrect...!')
+                    return render(request, 'admin_login.html', {'user': user})
+        return render(request, 'admin_login.html', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('authenticate')
+
+# admin panel function
+
+
+def admin_panel(request):
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        return render(request, 'admin_panel.html', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('authenticate')
 
 
 # signup function
