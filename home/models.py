@@ -85,3 +85,16 @@ class PostModel(models.Model):
 
     class Meta:
         db_table = 'user_posts'
+
+
+class BkashPayment(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    bkashNumber = models.CharField(max_length=20)
+    bkashTransaction = models.CharField(max_length=512)
+    point = models.CharField(max_length=10)
+    status = models.CharField(max_length=20)
+    created_at = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        db_table = 'bkash_payment'

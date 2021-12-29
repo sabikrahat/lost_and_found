@@ -10,6 +10,9 @@
 
 <!--Css file-->
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"> -->
+<link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
 
 <style>
     .container-fluid {
@@ -91,7 +94,7 @@
     <!-- Navbar -->
     <div class="sticky-lg-top" style="box-shadow: 5px 5px 5px rgb(167, 165, 165);">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container-fluid" style="margin-left: 2em; margin-right: 2em;">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'images/lost-and-found.jpg' %}" height="30px" width="30px"
                         class="d-inline-block align-top" alt="lost and found image" />
@@ -107,18 +110,16 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><b>Home</b></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'authenticate' %}"><b>Authenticate</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin-login' %}"><b>Admin page</b></a>
-                        </li>
                         {% if request.session.email %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'view-profile' %}"><b>View Pofile</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}"><b>Log Out</b></a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'authenticate' %}"><b>Authenticate</b></a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
@@ -136,11 +137,87 @@
                         const username = ' | Hello, ' + email.split("@")[0] + ' | ';
                         document.getElementById("nameshow").innerHTML = username;
                     </script>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-
+                    <div>
+                        <!-- css file  -->
+                        <link rel="stylesheet" type="text/css" href="{% static 'css/user_dropdown.css'%}" />
+                        <div class="action">
+                            <div class="profile" onclick="menuToggle();">
+                                {% if user.profileImg %}
+                                <img src="../../{{user.profileImg.url}}" alt="{{user.name}}"
+                                    style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.05em; border-radius: 50%;">
+                                {% else %}
+                                <img src="{% static 'images/default_dp.gif' %}" alt="{{user.name}}"
+                                    style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.05em; border-radius: 50%;">
+                                {% endif %}
+                            </div>
+                            <div class="menu">
+                                {% if request.session.email %}
+                                <h3>
+                                    User Account<div>{{user.name}}</div>
+                                </h3>
+                                {% else %}
+                                <h3>
+                                    User Account<div>Lost and Found</div>
+                                </h3>
+                                {% endif %}
+                                <ul>
+                                    {% if request.session.email %}
+                                    <li>
+                                        <span class="material-icons icons-size">insert_comment</span>
+                                        <a href="{% url 'write-post' %}">Write Post</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">engineering</span>
+                                        <a href="{% url 'admin-login' %}">Admin Panel</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">money</span>
+                                        <a href="{% url 'point-purchase' %}">Point Purchase</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">phone</span>
+                                        <a href="{% url 'contact' %}">Contact</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">person</span>
+                                        <a href="{% url 'view-profile' %}">My Profile</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">mode</span>
+                                        <a href="{% url 'edit-profile' %}">Edit Account</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">lock</span>
+                                        <a href="{% url 'forget-password' %}">Reset Password</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">logout</span>
+                                        <a href="{% url 'logout' %}">Logout</a>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <span class="material-icons icons-size">person</span>
+                                        <a href="{% url 'authenticate' %}">Log in</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">phone</span>
+                                        <a href="{% url 'contact' %}">Contact</a>
+                                    </li>
+                                    {% endif %}
+                                    <!-- <li>
+                                    <span class="material-icons icons-size">account_balance_wallet</span>
+                                    <a href="#">Wallet</a>
+                                </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function menuToggle() {
+                            const toggleMenu = document.querySelector('.menu');
+                            toggleMenu.classList.toggle('active')
+                        }
+                    </script>
                 </div>
             </div>
         </nav>
@@ -241,42 +318,10 @@
                 <!-- second header finished -->
                 <br>
                 <br>
-                <!-- <style>
-                    .card {
-                        background-color: #e0f3fcfb;
-                        box-shadow: 10px 10px 10px rgb(78, 77, 77);
-                    }
-
-                    /* .card img {
-                        width: 310px;
-                        height: 280px;
-                    } */
-
-                    .card:hover {
-                        opacity: 0.9;
-                        transform: scale(1.02);
-                        transition: 0.5s ease;
-                    }
-                </style>
-                {% if posts|length %}
-                <div class="row">
-                    {% for post in posts %}
-                    <div class="col-md-3">
-                        <div class="card" style=" margin: 0.5em; padding: 0.05em;">
-                            <img class="card-img-top" src="{{post.7}}" alt="Card image cap" height="280px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{post.3}}</h5>
-                                <p class="card-text">{{post.4}}</p>
-                                <a href="" class="btn btn-primary">View Post</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div> -->
                 <div class="row">
                     {% for post in posts %}
                     <div class="col-md-4">
-                        <div>
+                        <div onclick="location.href='/view-post/{{post.0}}/'">
                             <link rel="stylesheet" type="text/css" href="{% static 'css/post_card.css'%}" />
                             <main>
                                 <div class="card" style="background-image:url('{{post.7}}');">
@@ -290,71 +335,10 @@
                     </div>
                     {% endfor %}
                 </div>
-
-
-
-
-
-
                 <br>
                 <br>
                 <br>
                 <br>
-
-                <!-- <div class="row">
-                    <div class="col-md-3">
-                        <a href="{% url 'view-profile' %}">
-                            <div class="card">
-                                <img class="card-img-top" src="{% static 'images/lost.jpg' %}" alt="Notes image">
-                                <div class="card-body">
-                                    <h5 class="card-title ">
-                                        Profile
-                                    </h5>
-                                    View & update your Profile
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-3">
-                        <a href="#">
-                            <div class="card">
-                                <img class="card-img-top" src="{% static 'images/and.jpg' %}" alt="Notes image">
-                                <div class="card-body">
-                                    <h5 class="card-title ">
-                                        Homework
-                                    </h5>
-                                    Add homeworks and assign them deadlines. They will be displayed prioritised by
-                                    deadlines
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="{% url 'authenticate' %}">
-                            <div class="card">
-                                <img class="card-img-top" src="{% static 'images/question_mark.png' %}"
-                                    alt="Notes image">
-                                <div class="card-body">
-                                    <h5 class="card-title ">
-                                        Sign Up & Sign In
-                                    </h5>
-                                    Create a account to find your lost products
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div> -->
-                <!-- <div class="custom-center">
-                    <h1>Welcome to Lost & Found</h1>
-                </div> -->
-                <!-- {% else %}
-                <div class="custom-center">
-                    <br>
-                    <h5> Sorry! No items found.</h5>
-                </div>
-
-                {% endif %} -->
                 {% endblock %}
             </div>
         </div>
