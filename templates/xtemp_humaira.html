@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -9,7 +10,57 @@
 </head>
 
 <body>
-    Humaira Test Page
+    <div>
+        <!-- css file  -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_dropdown.css'%}" />
+    </div>
+    <div class="action">
+        <div class="profile" onclick="menuToggle();">
+            <img src="{% static 'images/default_dp.gif' %}" alt="">
+        </div>
+
+        <div class="menu">
+            <h3>
+                User Account
+                <div>
+                    User Name
+                </div>
+            </h3>
+            <ul>
+                <li>
+                    <span class="material-icons icons-size">person</span>
+                    <a href="{% url 'view-profile' %}">My Profile</a>
+                </li>
+                <li>
+                    <span class="material-icons icons-size">mode</span>
+                    <a href="{% url 'edit-profile' %}">Edit Account</a>
+                </li>
+                <li>
+                    <span class="material-icons icons-size">insert_comment</span>
+                    <a href="{% url 'home' %}">Post</a>
+                </li>
+                <li>
+                    <span class="material-icons icons-size">phone</span>
+                    <a href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li>
+                    <span class="material-icons icons-size">logout</span>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                <!-- <li>
+                    <span class="material-icons icons-size">account_balance_wallet</span>
+                    <a href="#">Wallet</a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        function menuToggle(){
+            const toggleMenu = document.querySelector('.menu');
+            toggleMenu.classList.toggle('active')
+        }
+    </script>
 </body>
 
 </html>
