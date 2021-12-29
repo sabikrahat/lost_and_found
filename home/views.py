@@ -1,12 +1,12 @@
 from django.shortcuts import redirect, render
-from home.models import PostModel, ResetPwdTokens, UserContact, UserFeedback, UserModel
+from home.models import BkashPayment, PostModel, ResetPwdTokens, UserContact, UserFeedback, UserModel
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
 from django.db import connection
 import time
 import uuid
-from lost_and_found.mail_service import send_forget_password_mail
+from lost_and_found.mail_service import send_forget_password_mail, send_point_purchase_mail
 
 # Create your views here.
 
@@ -19,7 +19,11 @@ def home(request):
         'SELECT * FROM user_posts ORDER BY id DESC;')
     posts = cursor.fetchall()
     cursor.close()
-    return render(request, 'home.html', {'posts': posts})
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        return render(request, 'home.html', {'posts': posts, 'user': user})
+    except:
+        return render(request, 'home.html', {'posts': posts})
 
 
 # authentication function
@@ -160,6 +164,7 @@ def edit_profile(request):
                 user.telegramUrl = request.POST.get('editTelegramUrl')
             user.completeProfile = '100%'
 
+            # TODO: single photo file save
             if len(request.FILES) != 0:
                 user.profileImg = request.FILES['editPhoto']
                 user.nidFrontImg = request.FILES['editNidFront']
@@ -327,6 +332,51 @@ def write_post(request):
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
+
+# view post function
+
+
+def view_post(request, token):
+    cursor = connection.cursor()
+    cursor.execute(
+        'SELECT * FROM app_users au, user_posts up WHERE au.id = up.publisherId and up.id = %s', [token])
+    post = cursor.fetchall()
+    cursor.close()
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        return render(request, 'view_post.html', {'post': post, 'user': user})
+    except:
+        return render(request, 'view_post.html', {'post': post})
+
+
+# point purchase function
+
+def point_purchase(request):
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+
+        if request.method == 'POST':
+            if request.POST.get('inputName') and request.POST.get('inputEmail') and request.POST.get('bkashNumber') and request.POST.get('bkashTransaction') and request.POST.get('inputPoint'):
+
+                savePayment = BkashPayment()
+
+                savePayment.name = request.POST.get('inputName')
+                savePayment.email = request.POST.get('inputEmail')
+                savePayment.status = 'Pending'
+                savePayment.bkashNumber = request.POST.get('bkashNumber')
+                savePayment.bkashTransaction = request.POST.get('bkashTransaction')
+                savePayment.point = request.POST.get('inputPoint')
+
+                savePayment.save()
+                send_point_purchase_mail(request.POST.get('inputName'))
+                messages.success(
+                    request, "Your point purchase request has been submitted. We will confirm you by email within an hour.")
+                return render(request, 'point-purchase.html', {'user': user})
+        else:
+            return render(request, 'point-purchase.html', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('login')
 
 
 # test html page for developers
