@@ -14,3 +14,16 @@ def send_forget_password_mail(email, token):
     except Exception as e:
         print(e)
         return False
+
+
+def send_point_purchase_mail(name):
+    try:
+        subject = 'Point Purchase Request'
+        message = f'{name} requested for purchase some points. Click the link given below to view.\n\n http://127.0.0.1:8000/admin-login'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['lostandfound72428@gmail.com']
+        send_mail(subject, message, email_from, recipient_list)
+        return True
+    except Exception as e:
+        print(e)
+        return False

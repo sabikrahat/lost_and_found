@@ -21,4 +21,6 @@ urlpatterns = [
     path('edit-profile', views.edit_profile, name="edit-profile"),
     path('forget-password', views.forget_password, name='forget-password'),
     path('change-password/<token>/', views.change_password, name='change-password'),
+    path('view-post/<token>/', views.view_post, name='view-post'),
+    path('point-purchase', views.point_purchase, name='point-purchase'),
 ]
