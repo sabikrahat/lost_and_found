@@ -7,7 +7,6 @@
 <!-- css file  -->
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css'%}" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container">
     {% if messages %}
@@ -31,7 +30,7 @@
                 <form class="card-body cardbody-color p-lg-5" method="POST">
                     {% csrf_token %}
                     <div class="text-center">
-                        <img src="https://cdn-icons.flaticon.com/png/512/3093/premium/3093091.png?token=exp=1640716392~hmac=c61954c0c2852468f2de0e02110e05f2"
+                        <img src="static/images/admin.png"
                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="100px"
                             alt="profile">
                     </div>

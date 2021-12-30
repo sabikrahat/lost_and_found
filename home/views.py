@@ -340,13 +340,13 @@ def view_post(request, token):
     cursor = connection.cursor()
     cursor.execute(
         'SELECT * FROM app_users au, user_posts up WHERE au.id = up.publisherId and up.id = %s', [token])
-    post = cursor.fetchall()
+    posts = cursor.fetchall()
     cursor.close()
     try:
         user = UserModel.objects.get(email=request.session['email'])
-        return render(request, 'view_post.html', {'post': post, 'user': user})
+        return render(request, 'view_post.html', {'posts': posts, 'user': user})
     except:
-        return render(request, 'view_post.html', {'post': post})
+        return render(request, 'view_post.html', {'posts': posts})
 
 
 # point purchase function
