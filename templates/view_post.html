@@ -55,11 +55,11 @@
 <div class="row justify-content-center" style="align-items: center;">
     <div class="col-9">
         {% if post.12 %}
-        <img src="../../{{post.12}}" height="55px"
+        <img src="../../{{post.12}}" height="55px" width="55px"
             style="border: 3px solid #0b5ed7; padding: 0.1em; border-radius: 50%;"
             alt="user image" /><b>&ensp;{{post.1}}</b>
         {% else %}
-        <img src="{% static 'images/default_dp.gif' %}" height="55px"
+        <img src="{% static 'images/default_dp.gif' %}" height="55px" width="55px"
             style="border: 3px solid #0b5ed7; padding: 0.1em; border-radius: 50%;"
             alt="user image" /><b>&ensp;{{post.1}}</b>
         {% endif %}
