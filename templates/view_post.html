@@ -4,25 +4,73 @@
 {% block content %}
 {% load static %}
 
-<h3>{{post.0}}</h3>
+<h4></h4>
+<h3>View Post</h3>
+<hr>
+
+{% if messages %}
+{% for result in messages %}
+<div>&ensp;</div>
+{% if result.tags == "error" %}
+<div class="alert alert-danger">
+    {{ result }}
+</div>
+{% else %}
+<div class="alert alert-success">
+    {{ result }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% for post in posts %}
+<div class="row justify-content-center" style="align-items: center;">
+    <div class="col-10">
+        <h3><b>{{post.19}}</b></h3>
+        <h6></h6>
+        <h6>Posted on {{post.25}}</h6>
+        <h6><span class="material-icons icons-size-bg">wrong_location</span><b>&nbsp;&nbsp;{{post.21}}</b></h6>
+    </div>
+    {% if post.2 == request.session.email %}
+    <div class="col-2" style="align-items: center;">
+        <button type="button" class="btn btn-primary">Edit Post</button>
+    </div>
+    {% else %}
+    <div class="col-2" style="align-items: center;">
+        <button type="button" class="btn btn-primary">Claim Ownership</button>
+    </div>
+    {% endif %}
+</div>
+
+<br>
+<div class="row" style="align-items: center;">
+    <div class="col-3"></div>
+    <div class="col-6"><img src="../../{{post.23}}" alt="bkash-payment-logo" style="width: 100%;
+    height: auto;
+    object-fit: cover;"></div>
+    <div class="col-3"></div>
+</div>
 <br>
 <br>
-<p>{{post.1}}</p>
+<div class="row justify-content-center" style="align-items: center;">
+    <div class="col-9">
+        {% if post.12 %}
+        <img src="../../{{post.12}}" height="55px"
+            style="border: 3px solid #0b5ed7; padding: 0.1em; border-radius: 50%;"
+            alt="user image" /><b>&ensp;{{post.1}}</b>
+        {% else %}
+        <img src="{% static 'images/default_dp.gif' %}" height="55px"
+            style="border: 3px solid #0b5ed7; padding: 0.1em; border-radius: 50%;"
+            alt="user image" /><b>&ensp;{{post.1}}</b>
+        {% endif %}
+    </div>
+    <div class="col-3" style="text-align: end;">
+        <b>Losted on {{post.22}}</b>
+    </div>
+</div>
 <br>
-<p>{{post.2}}</p>
-<br>
-<p>{{post.3}}</p>
-<br>
-<p>{{post.4}}</p>
-<br>
-<p>{{post.5}}</p>
-<br>
-<p>{{post.6}}</p>
-<br>
-<p>{{post.7}}</p>
-<br>
-<p>{{post.8}}</p>
-<br>
-<p>{{post.9}}</p>
+<p style="white-space: pre-wrap; font-size: 18px;">{{post.20}}</p>
+
+{% endfor %}
 
 {% endblock %}

@@ -163,44 +163,44 @@
                                 <ul>
                                     {% if request.session.email %}
                                     <li>
-                                        <span class="material-icons icons-size">insert_comment</span>
+                                        <span class="material-icons icons-size-bg">insert_comment</span>
                                         <a href="{% url 'write-post' %}">Write Post</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">engineering</span>
+                                        <span class="material-icons icons-size-bg">engineering</span>
                                         <a href="{% url 'admin-login' %}">Admin Panel</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">money</span>
+                                        <span class="material-icons icons-size-bg">request_quote</span>
                                         <a href="{% url 'point-purchase' %}">Point Purchase</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">phone</span>
+                                        <span class="material-icons icons-size-bg">phone</span>
                                         <a href="{% url 'contact' %}">Contact</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">person</span>
+                                        <span class="material-icons icons-size-bg">person</span>
                                         <a href="{% url 'view-profile' %}">My Profile</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">mode</span>
+                                        <span class="material-icons icons-size-bg">mode</span>
                                         <a href="{% url 'edit-profile' %}">Edit Account</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">lock</span>
+                                        <span class="material-icons icons-size-bg">lock_open</span>
                                         <a href="{% url 'forget-password' %}">Reset Password</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">logout</span>
+                                        <span class="material-icons icons-size-bg">logout</span>
                                         <a href="{% url 'logout' %}">Logout</a>
                                     </li>
                                     {% else %}
                                     <li>
-                                        <span class="material-icons icons-size">person</span>
+                                        <span class="material-icons icons-size-bg">person</span>
                                         <a href="{% url 'authenticate' %}">Log in</a>
                                     </li>
                                     <li>
-                                        <span class="material-icons icons-size">phone</span>
+                                        <span class="material-icons icons-size-bg">phone</span>
                                         <a href="{% url 'contact' %}">Contact</a>
                                     </li>
                                     {% endif %}
