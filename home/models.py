@@ -80,11 +80,27 @@ class PostModel(models.Model):
     location = models.CharField(max_length=50)
     lostDateTime = models.CharField(max_length=50)
     fileImg = models.ImageField(upload_to=filepath, null=True, blank=True)
-    fileSecretImg = models.ImageField(upload_to=filepath, null=True, blank=True)
+    fileSecretImg = models.ImageField(
+        upload_to=filepath, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'user_posts'
+
+
+class ClaimOwner(models.Model):
+    claimerId = models.CharField(max_length=20)
+    claimerName = models.CharField(max_length=50)
+    claimerEmail = models.CharField(max_length=40)
+    postId = models.CharField(max_length=20)
+    postPunlisherEmail = models.CharField(max_length=40)
+    postPunlisherName = models.CharField(max_length=50)
+    claimFileImg = models.ImageField(upload_to=filepath, null=True, blank=True)
+    status = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'claim_owner'
 
 
 class BkashPayment(models.Model):

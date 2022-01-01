@@ -37,9 +37,42 @@
     </div>
     {% else %}
     <div class="col-2" style="align-items: center;">
-        <button type="button" class="btn btn-primary">Claim Ownership</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Claim
+            Ownership</button>
     </div>
     {% endif %}
+</div>
+
+<!-- Modal Popup -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="POST" enctype="multipart/form-data" action="/claim-owner/{{post.17}}/">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel" style="align-items: center; text-align: center;">
+                        Warning</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really want to claim ownership of this material? It will worth 100 points (means 100
+                        points
+                        will reduce from your account). Fake claim may ban you for 1 month. If once
+                        accepted, it can't be undo.
+                        <br><b>Note That: Your Profile must be 100% completed. Otherwise you will get rejection.</b>
+                    </p>
+                    <br>
+                    <input type="file" required placeholder="Choose a file to verify owner" name="secretPic">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"
+                        onclick="location.href='/claim-owner/{{post.17}}/'">Claim</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <br>
@@ -69,7 +102,10 @@
     </div>
 </div>
 <br>
-<p style="white-space: pre-wrap; font-size: 18px;">{{post.20}}</p>
+<p style="white-space: pre-wrap; font-size: 18px; text-align: justify;">{{post.20}}</p>
+<br>
+<br>
+<br>
 
 {% endfor %}
 

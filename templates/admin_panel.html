@@ -4,8 +4,225 @@
 {% block content %}
 {% load static %}
 
-<div class="custom-center">
-    <h4>Hello Admin User..........!</h4>
+<h4></h4>
+<h3>Admin Panel (Confidential Data)</h3>
+<hr>
+
+{% if messages %}
+{% for result in messages %}
+<div>&ensp;</div>
+{% if result.tags == "error" %}
+<div class="alert alert-danger">
+    {{ result }}
 </div>
+{% else %}
+<div class="alert alert-success">
+    {{ result }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+            role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+            role="tab" aria-controls="profile" aria-selected="false">Pending Claim request</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button"
+            role="tab" aria-controls="messages" aria-selected="false">Pending Point Requests</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
+            role="tab" aria-controls="settings" aria-selected="false">Users Info</button>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-8">
+                <img src="/static/images/admin-panel.gif" alt="logo" height="700px">
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <br><br><br><br><br><br><br>
+    </div>
+    <!-- pending claim request -->
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div style="margin-bottom: 1em; margin-top: 1em;">
+            {% if claims %}
+            <table class="table table-bordered" style="color: rgb(13, 184, 13);">
+                <thead>
+                    <tr>
+                        <th scope="col" style="color: rgb(13, 184, 13);">id</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Claimer Email</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Claimer Name</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Publisher Email</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Publisher Name</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Image</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Claimer Secret</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Publisher Secret</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for claim in claims %}
+                    <tr style="text-align: center; vertical-align: middle;">
+                        <th style="color: rgb(13, 184, 13);" scope="row">{{claim.0}}</th>
+                        <td style="color: rgb(13, 184, 13);">{{claim.3}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{claim.2}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{claim.5}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{claim.6}}</td>
+                        <td style="color: rgb(13, 184, 13);">
+                            <a href="{{claim.17}}" target="_blank"><img src="{{claim.17}}"
+                                    style="max-width: 150px;"></a>
+                        </td>
+                        <td style="color: rgb(13, 184, 13);"><a href="{{claim.7}}" target="_blank"><img
+                                    src="{{claim.7}}" style="max-width: 150px;"></a>
+                        </td>
+                        <td style="color: rgb(13, 184, 13);"><a href="{{claim.18}}" target="_blank"><img
+                                    src="{{claim.18}}" style="max-width: 150px;"></a>
+                        </td>
+                        <td style="color: rgb(13, 184, 13);">
+                            <button type="button" class="btn btn-outline-success">Accept</button>
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-outline-danger">Reject</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br><br><br><br><br><br><br><br><br>
+            {% else %}
+            <div class="custom-center">
+                <h4>No Pending Claim Requests</h4>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- pending point request -->
+    <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+        <div style="margin-bottom: 1em; margin-top: 1em;">
+            {% if pendings %}
+            <table class="table table-bordered" style="color: rgb(13, 184, 13);">
+                <thead>
+                    <tr>
+                        <th scope="col" style="color: rgb(13, 184, 13);">id</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Email</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Name</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Bkash Number</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Transaction ID</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Point Add</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pending in pendings %}
+                    <tr>
+                        <th style="color: rgb(13, 184, 13);" scope="row">{{pending.id}}</th>
+                        <td style="color: rgb(13, 184, 13);">{{pending.email}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{pending.name}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{pending.bkashNumber}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{pending.bkashTransaction}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{pending.point}}</td>
+                        <td style="color: rgb(13, 184, 13);"><button type="button" class="btn btn-outline-success"
+                                data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">&nbsp;{{pending.status}}&nbsp;</button>
+                        </td>
+                    </tr>
+                    <!-- Modal Popup -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel"
+                                        style="align-items: center; text-align: center;">
+                                        Warning</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you really want to add point to <b>{{pending.name}}</b> user? If once
+                                        accepted, it
+                                        can't be undo.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="location.href='/point-add/{{pending.id}}/'">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br><br><br><br><br><br><br><br><br>
+            {% else %}
+            <div class="custom-center">
+                <h4>No Pending Point Requests</h4>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+        <div style="margin-bottom: 1em; margin-top: 1em;">
+            {% if users %}
+            <table class="table table-bordered" style="color: rgb(13, 184, 13);">
+                <thead>
+                    <tr>
+                        <th scope="col" style="color: rgb(13, 184, 13);">id</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Email</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Name</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Phone Number</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Profile Status</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Point</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Location</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usr in users %}
+                    <tr>
+                        <th style="color: rgb(13, 184, 13);" scope="row">{{usr.id}}</th>
+                        <td style="color: rgb(13, 184, 13);"><a href="mailto:{{usr.email}}"
+                                target="_blank">{{usr.email}}</a></td>
+                        <td style="color: rgb(13, 184, 13);">{{usr.name}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{usr.phoneNumber}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{usr.completeProfile}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{usr.point}}</td>
+                        <td style="color: rgb(13, 184, 13);">{{usr.location}}</td>
+                        <td style="color: rgb(13, 184, 13);"><a href="{{usr.profileImg}}" target="_blank"><img
+                                    src="{{usr.profileImg}}" style="max-width: 150px;"></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br><br><br><br><br><br><br><br><br>
+            {% else %}
+            <div class="custom-center">
+                <h4>No User Registered yet!</h4>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    var firstTabEl = document.querySelector('#myTab li:last-child a')
+    var firstTab = new bootstrap.Tab(firstTabEl)
+
+    firstTab.show()
+</script>
+
 
 {% endblock %}

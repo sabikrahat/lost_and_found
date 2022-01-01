@@ -27,3 +27,17 @@ def send_point_purchase_mail(name):
     except Exception as e:
         print(e)
         return False
+
+
+def send_point_success_mail(email):
+    try:
+        subject = 'Point Added'
+        message = f'Your requested point has been added to your account. Click the link given below to view.\n\n http://127.0.0.1:8000'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+        send_mail(subject, message, email_from, recipient_list)
+        return True
+
+    except Exception as e:
+        print(e)
+        return False
