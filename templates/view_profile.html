@@ -7,15 +7,6 @@
 <!--css file link-->
 <link rel="stylesheet" type="text/css" href="{% static 'css/view_profile.css' %}">
 
-<script>
-  var myModal = document.getElementById('myModal')
-  var myInput = document.getElementById('myInput')
-
-  myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-  })
-</script>
-
 {% if messages %}
 {% for result in messages %}
 <div>&ensp;</div>
@@ -52,12 +43,32 @@
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
               {% if user.profileImg %}
-              <img src="{{user.profileImg.url}}" alt="{{user.name}}" class="rounded-circle" width="192" height="192"
+              <img src="{{user.profileImg.url}}" alt="{{user.name}}" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop" class="rounded-circle" width="192" height="192"
                 style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
               {% else %}
               <img src="{% static 'images/default_dp.gif' %}" alt="{{user.name}}" class="rounded-circle" width="192"
                 height="192" style="border: 3px solid #0b5ed7; object-fit: cover; padding: 0.1em; border-radius: 50%;">
               {% endif %}
+              <!-- Modal Popup -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel" style="align-items: center; text-align: center;">
+                        Preview</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <img src="{{user.profileImg.url}}" alt="{{user.name}}" class="img-fluid img-thumbnail">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="mt-3">
                 <h4>{{user.name}}</h4>
                 {% if user.bio %}
@@ -76,7 +87,7 @@
 
                 <!--pop up-->
                 {% if user.whatsappUrl and user.messengerUrl and user.telegramUrl %}
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropp">
                   Message
                 </button>
                 {% else %}
@@ -86,12 +97,12 @@
                 {% endif %}
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                <div class="modal fade" id="staticBackdropp" data-bs-backdrop="static" data-bs-keyboard="false"
                   tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel"
+                        <h5 class="modal-title" id="staticBackdropLabell"
                           style="align-items: center; text-align: center;">Contact</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
@@ -254,8 +265,8 @@
             <div class="card h-100" style="align-items: center;">
               <div class="card-body">
                 {% if user.nidFrontImg %}
-                <img src="{{user.nidFrontImg.url}}" height="200px" width="360px" style="align-items: center;"
-                  alt="lost and found image" />
+                <a href="{{user.nidFrontImg.url}}" target="_blank"><img src="{{user.nidFrontImg.url}}" height="200px"
+                    width="360px" style="align-items: center;" alt="lost and found image" /></a>
                 {% else %}
                 <a href="{% url 'edit-profile' %}"><img src="{% static 'images/nid-card-front.png' %}" height="200px"
                     width="360px" style="align-items: center;" alt="lost and found image" /></a>
@@ -267,8 +278,8 @@
             <div class="card h-100" style="align-items: center;">
               <div class="card-body">
                 {% if user.nidBackImg %}
-                <img src="{{user.nidBackImg.url}}" height="200px" width="360px" style="align-items: center;"
-                  alt="lost and found image" />
+                <a href="{{user.nidBackImg.url}}" target="_blank"><img src="{{user.nidBackImg.url}}" height="200px"
+                    width="360px" style="align-items: center;" alt="lost and found image" /></a>
                 {% else %}
                 <a href="{% url 'edit-profile' %}"><img src="{% static 'images/nid-card-back.png' %}" height="200px"
                     width="360px" style="align-items: center;" alt="lost and found image" /></a>

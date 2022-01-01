@@ -23,4 +23,6 @@ urlpatterns = [
     path('change-password/<token>/', views.change_password, name='change-password'),
     path('view-post/<token>/', views.view_post, name='view-post'),
     path('point-purchase', views.point_purchase, name='point-purchase'),
+    path('point-add/<token>/', views.point_add, name='point-add'),
+    path('claim-owner/<token>/', views.claim_owner, name='claim-owner'),
 ]

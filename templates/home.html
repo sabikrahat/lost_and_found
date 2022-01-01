@@ -218,6 +218,7 @@
         <div class="row m-10">
             <div class="col-12">
                 {% block content %}
+                <!-- Reuseable Content -->
                 {% if messages %}
                 {% for result in messages %}
                 {% if result.tags == "error" %}
@@ -314,7 +315,8 @@
                         <div onclick="location.href='/view-post/{{post.0}}/'">
                             <link rel="stylesheet" type="text/css" href="{% static 'css/post_card.css'%}" />
                             <main>
-                                <div class="card" style="background-image:url('{{post.7}}');">
+                                <div class="card"
+                                    style="background-image:url('{{post.7}}'); background-position: center;">
                                     <div class="info">
                                         <h1 class="title">{{post.3}}</h1>
                                         <p class="description">{{post.4}}</p>

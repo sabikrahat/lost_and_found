@@ -1,12 +1,12 @@
 from django.shortcuts import redirect, render
-from home.models import BkashPayment, PostModel, ResetPwdTokens, UserContact, UserFeedback, UserModel
+from home.models import BkashPayment, ClaimOwner, PostModel, ResetPwdTokens, UserContact, UserFeedback, UserModel
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
 from django.db import connection
 import time
 import uuid
-from lost_and_found.mail_service import send_forget_password_mail, send_point_purchase_mail
+from lost_and_found.mail_service import send_forget_password_mail, send_point_purchase_mail, send_point_success_mail
 
 # Create your views here.
 
@@ -57,10 +57,61 @@ def admin_login(request):
 def admin_panel(request):
     try:
         user = UserModel.objects.get(email=request.session['email'])
-        return render(request, 'admin_panel.html', {'user': user})
+
+        if user.email == 'lostandfound72428@gmail.com':
+            pendings = BkashPayment.objects.raw(
+                'SELECT * FROM bkash_payment WHERE STATUS = %s', ['Pending'])
+            users = UserModel.objects.raw(
+                'SELECT * FROM app_users WHERE email != %s', [request.session['email']])
+
+            cursor = connection.cursor()
+            cursor.execute(
+                'SELECT * FROM claim_owner co, user_posts up WHERE co.postId = up.id and co.STATUS = %s ORDER BY co.id ASC;', ['Pending'])
+            claims = cursor.fetchall()
+            cursor.close()
+            return render(request, 'admin_panel.html', {'user': user, 'pendings': pendings, 'claims': claims, 'users': users})
+        else:
+            messages.error(request, "Restricted! Only admin users can access.")
+            return redirect('/', {'user': user})
     except:
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
+
+# point add function (Admin Panel)
+
+
+def point_add(request, token):
+    cursor = connection.cursor()
+    cursor.execute(
+        'SELECT * FROM app_users au, bkash_payment bp WHERE au.email = bp.email and bp.id = %s ORDER BY bp.id DESC', [token])
+
+    puser = cursor.fetchall()
+    cursor.close()
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+
+        if user.email == 'lostandfound72428@gmail.com':
+
+            tuser = UserModel.objects.get(email=puser[0][18])
+
+            tuser.point = str(int(tuser.point) + int(puser[0][21]))
+            tuser.save()
+
+            pend = BkashPayment.objects.get(id=token)
+            pend.status = "Done"
+            pend.save()
+
+            send_point_success_mail(puser[0][18])
+
+            messages.success(request, "Point added to " +
+                             puser[0][17] + " user successfully.")
+            return redirect('/admin-panel', {'user': user})
+        else:
+            messages.error(request, "Restricted! Only admin users can access.")
+            return redirect('/', {'user': user})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('login')
 
 
 # signup function
@@ -348,6 +399,44 @@ def view_post(request, token):
     except:
         return render(request, 'view_post.html', {'posts': posts})
 
+# claim owner function
+
+
+def claim_owner(request, token):
+    cursor = connection.cursor()
+    cursor.execute(
+        'SELECT * FROM app_users au, user_posts up WHERE au.id = up.publisherId and up.id = %s', [token])
+    posts = cursor.fetchall()
+    cursor.close()
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+
+        claimOwner = ClaimOwner()
+
+        claimOwner.claimerId = user.id
+        claimOwner.claimerName = user.name
+        claimOwner.claimerEmail = user.email
+        claimOwner.postId = token
+        claimOwner.postPunlisherEmail = posts[0][2]
+        claimOwner.postPunlisherName = posts[0][18]
+        claimOwner.status = 'Pending'
+
+        if len(request.FILES) != 0:
+            claimOwner.claimFileImg = request.FILES['secretPic']
+
+        claimOwner.save()
+
+        user.point = str(int(user.point) - 100)
+        user.save()
+
+        messages.success(
+            request, "Your claim has been submitted! You will get updates through email.")
+        return redirect('/')
+    except:
+        messages.error(
+            request, "Something went wrong. Please try again later.")
+        return redirect('/')
+
 
 # point purchase function
 
@@ -364,7 +453,8 @@ def point_purchase(request):
                 savePayment.email = request.POST.get('inputEmail')
                 savePayment.status = 'Pending'
                 savePayment.bkashNumber = request.POST.get('bkashNumber')
-                savePayment.bkashTransaction = request.POST.get('bkashTransaction')
+                savePayment.bkashTransaction = request.POST.get(
+                    'bkashTransaction')
                 savePayment.point = request.POST.get('inputPoint')
 
                 savePayment.save()
