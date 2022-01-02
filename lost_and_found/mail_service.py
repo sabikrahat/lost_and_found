@@ -57,7 +57,7 @@ def send_claim_rejection_mail(email):
         return False
 
 
-def send_claim_acception_mail(user):
+def send_claim_acception_mail(user, email):
     try:
         subject = 'Lost and Found - Claim Acception'
         message = f'''Your request for claiming the material has been accepted by the admin.
@@ -77,7 +77,7 @@ def send_claim_acception_mail(user):
         Click the link given below to view. http://127.0.0.1:8000'''
 
         email_from = settings.EMAIL_HOST_USER
-        recipient_list = [user.email]
+        recipient_list = [email]
         send_mail(subject, message, email_from, recipient_list)
         return True
 

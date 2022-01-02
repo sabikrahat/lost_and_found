@@ -126,7 +126,7 @@ def signup(request):
             saveUser.email = request.POST.get('email')
             saveUser.password = make_password(request.POST.get('password'))
             saveUser.completeProfile = '25%'
-            saveUser.point = '100'
+            saveUser.point = '200'
 
             if saveUser.isExists():
                 messages.error(
@@ -399,7 +399,6 @@ def edit_post(request, token):
                 post.title = request.POST.get('title')
                 post.description = request.POST.get('description')
                 post.location = request.POST.get('location')
-                post.lostDateTime = request.POST.get('datetime')
 
                 post.save()
 
@@ -478,9 +477,9 @@ def claim_accept(request, token):
         claimOwner.status = 'Accepted'
         claimOwner.save()
 
-        user = UserModel.objects.get(email=claimOwner.claimerEmail)
+        user = UserModel.objects.get(email=claimOwner.postPunlisherEmail)
 
-        send_claim_acception_mail(user)
+        send_claim_acception_mail(user, claimOwner.claimerEmail)
 
         messages.success(request, "Claim has been accepted!")
         return redirect('admin-panel')

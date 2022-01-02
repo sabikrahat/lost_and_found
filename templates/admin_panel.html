@@ -135,36 +135,9 @@
                         <td style="color: rgb(13, 184, 13);">{{pending.bkashTransaction}}</td>
                         <td style="color: rgb(13, 184, 13);">{{pending.point}}</td>
                         <td style="color: rgb(13, 184, 13);"><button type="button" class="btn btn-outline-success"
-                                data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">&nbsp;{{pending.status}}&nbsp;</button>
+                                onclick="location.href='/point-add/{{pending.id}}/'">&nbsp;{{pending.status}}&nbsp;</button>
                         </td>
                     </tr>
-                    <!-- Modal Popup -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel"
-                                        style="align-items: center; text-align: center;">
-                                        Warning</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Do you really want to add point to <b>{{pending.name}}</b> user? If once
-                                        accepted, it
-                                        can't be undo.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="location.href='/point-add/{{pending.id}}/'">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     {% endfor %}
                 </tbody>
             </table>
@@ -190,6 +163,8 @@
                         <th scope="col" style="color: rgb(13, 184, 13);">Point</th>
                         <th scope="col" style="color: rgb(13, 184, 13);">Location</th>
                         <th scope="col" style="color: rgb(13, 184, 13);">Image</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Nid Front</th>
+                        <th scope="col" style="color: rgb(13, 184, 13);">Nid Back</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -205,6 +180,10 @@
                         <td style="color: rgb(13, 184, 13);">{{usr.location}}</td>
                         <td style="color: rgb(13, 184, 13);"><a href="{{usr.profileImg}}" target="_blank"><img
                                     src="{{usr.profileImg}}" style="max-width: 150px;"></a></td>
+                        <td style="color: rgb(13, 184, 13);"><a href="{{usr.nidFrontImg}}" target="_blank"><img
+                                    src="{{usr.nidFrontImg}}" style="max-width: 150px;"></a></td>
+                        <td style="color: rgb(13, 184, 13);"><a href="{{usr.nidBackImg}}" target="_blank"><img
+                                    src="{{usr.nidBackImg}}" style="max-width: 150px;"></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
