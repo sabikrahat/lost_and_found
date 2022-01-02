@@ -188,12 +188,12 @@ a {
 
 .cardbody-color {
   background-color: #2c03be93;
-  animation: mymove 8s infinite;
+  animation: mymove 6s infinite;
 }
 
 @keyframes mymove {
   50% {background-color: #a9c3fcfd;}
-  50% {box-shadow: 10px 20px 30px blue;}
+  50% {box-shadow: 10px 20px 30px rgb(114, 114, 255);}
 }
 
 

@@ -5,7 +5,7 @@
 {% load static %}
 
 <style>
-    .col-6 .card-img{
+    .col-6 .card-img {
         animation: rahat 1s linear 1;
         animation-delay: 0.6s;
         visibility: hidden;
@@ -24,7 +24,6 @@
 
         }
     }
-
 </style>
 
 <h4></h4>
@@ -104,13 +103,53 @@
     <div class="col-6">
         <div class="card-img"><img src="../../{{post.23}}" alt="bkash-payment-logo" style="width: 100%;
     height: auto;
-    object-fit: cover;"></div></div>
+    object-fit: cover;"></div>
+    </div>
     <div class="col-3"></div>
+</div>
+
+<!-- -----user profile popup---- -->
+
+<div class="modal fade" id="staticBackdropp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="POST" enctype="multipart/form-data" action="/claim-owner/{{post.17}}/">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabell" style="align-items: center; text-align: center;">
+                        Post Punlisher</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <img src="../../{{post.12}}" alt="{{user.name}}" class="img-fluid img-thumbnail">
+                        <br>
+                        <br>
+                        <h3
+                            style="text-align: center; align-items: center; align-content: center; margin-bottom: 0.5em;">
+                            <b>&ensp;{{post.1}} </b></h3>
+
+                        <b style="text-align: center; align-items: center; align-content: center;">
+                            <h5>Profile Complited : &ensp;{{post.7}}</h5>
+                        </b>
+                        <p style="text-align: center; align-items: center; align-content: center;">
+                            &ensp;{{post.5}}
+                        </p>
+                    </div>
+
+                    <br>
+                    <!-- <input type="file" required placeholder="Choose a file to verify owner" name="secretPic"> -->
+                </div>
+
+            </div>
+        </form>
+    </div>
 </div>
 <br>
 <br>
 <div class="row justify-content-center" style="align-items: center;">
-    <div class="col-9">
+    <div class="col-9" onmouseover="" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdropp">
         {% if post.12 %}
         <img src="../../{{post.12}}" height="55px" width="55px"
             style="border: 3px solid #0b5ed7; padding: 0.1em; border-radius: 50%;"
