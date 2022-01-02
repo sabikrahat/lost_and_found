@@ -90,10 +90,12 @@
                                     src="{{claim.18}}" style="max-width: 150px;"></a>
                         </td>
                         <td style="color: rgb(13, 184, 13);">
-                            <button type="button" class="btn btn-outline-success">Accept</button>
+                            <button type="button" class="btn btn-outline-success"
+                                onclick="location.href='/claim-accept/{{claim.0}}/'">Accept</button>
                             <br>
                             <br>
-                            <button type="button" class="btn btn-outline-danger">Reject</button>
+                            <button type="button" class="btn btn-outline-danger"
+                                onclick="location.href='/claim-reject/{{claim.0}}/'">Reject</button>
                         </td>
                     </tr>
                     {% endfor %}

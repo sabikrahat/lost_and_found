@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.db import connection
 import time
 import uuid
-from lost_and_found.mail_service import send_forget_password_mail, send_point_purchase_mail, send_point_success_mail
+from lost_and_found.mail_service import send_claim_acception_mail, send_claim_rejection_mail, send_forget_password_mail, send_point_purchase_mail, send_point_success_mail
 
 # Create your views here.
 
@@ -384,6 +384,33 @@ def write_post(request):
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
 
+# edit post function
+
+
+def edit_post(request, token):
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        post = PostModel.objects.get(id=token)
+        if request.method == 'POST':
+            if request.POST.get('title') and request.POST.get('location') and request.POST.get('description'):
+
+                post.publisherId = user.id
+                post.publisherName = user.name
+                post.title = request.POST.get('title')
+                post.description = request.POST.get('description')
+                post.location = request.POST.get('location')
+                post.lostDateTime = request.POST.get('datetime')
+
+                post.save()
+
+                messages.success(request, "Your post has been edited!")
+                return redirect('/')
+        else:
+            return render(request, 'edit_post.html', {'user': user, 'post': post})
+    except:
+        messages.error(request, 'You need to login first')
+        return redirect('authenticate')
+
 # view post function
 
 
@@ -411,34 +438,77 @@ def claim_owner(request, token):
     try:
         user = UserModel.objects.get(email=request.session['email'])
 
-        claimOwner = ClaimOwner()
+        if user.completeProfile == '100%':
 
-        claimOwner.claimerId = user.id
-        claimOwner.claimerName = user.name
-        claimOwner.claimerEmail = user.email
-        claimOwner.postId = token
-        claimOwner.postPunlisherEmail = posts[0][2]
-        claimOwner.postPunlisherName = posts[0][18]
-        claimOwner.status = 'Pending'
+            claimOwner = ClaimOwner()
 
-        if len(request.FILES) != 0:
-            claimOwner.claimFileImg = request.FILES['secretPic']
+            claimOwner.claimerId = user.id
+            claimOwner.claimerName = user.name
+            claimOwner.claimerEmail = user.email
+            claimOwner.postId = token
+            claimOwner.postPunlisherEmail = posts[0][2]
+            claimOwner.postPunlisherName = posts[0][18]
+            claimOwner.status = 'Pending'
 
-        claimOwner.save()
+            if len(request.FILES) != 0:
+                claimOwner.claimFileImg = request.FILES['secretPic']
 
-        user.point = str(int(user.point) - 100)
-        user.save()
+            claimOwner.save()
 
-        messages.success(
-            request, "Your claim has been submitted! You will get updates through email.")
-        return redirect('/')
+            user.point = str(int(user.point) - 100)
+            user.save()
+
+            messages.success(
+                request, "Your claim has been submitted! You will get updates through email.")
+            return redirect('/')
+        else:
+            messages.error(request, "Complete your profile first!")
+            return render(request, 'view_profile.html', {'user': user})
     except:
         messages.error(
             request, "Something went wrong. Please try again later.")
         return redirect('/')
 
+# claim owner ACCEPTION function
+
+
+def claim_accept(request, token):
+    try:
+        claimOwner = ClaimOwner.objects.get(id=token)
+        claimOwner.status = 'Accepted'
+        claimOwner.save()
+
+        user = UserModel.objects.get(email=claimOwner.claimerEmail)
+
+        send_claim_acception_mail(user)
+
+        messages.success(request, "Claim has been accepted!")
+        return redirect('admin-panel')
+    except:
+        messages.error(
+            request, "Something went wrong. Please try again later.")
+        return redirect('/')
+
+# claim owner REJECTION function
+
+
+def claim_reject(request, token):
+    try:
+        claimOwner = ClaimOwner.objects.get(id=token)
+        claimOwner.status = 'Rejected'
+        claimOwner.save()
+
+        send_claim_rejection_mail(claimOwner.claimerEmail)
+
+        messages.success(request, "Claim has been rejected!")
+        return redirect('admin-panel')
+    except:
+        messages.error(
+            request, "Something went wrong. Please try again later.")
+        return redirect('/')
 
 # point purchase function
+
 
 def point_purchase(request):
     try:

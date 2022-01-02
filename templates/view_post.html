@@ -5,7 +5,7 @@
 {% load static %}
 
 <style>
-    .col-6 .card-img{
+    .col-6 .card-img {
         animation: rahat 1s linear 1;
         animation-delay: 0.6s;
         visibility: hidden;
@@ -24,7 +24,6 @@
 
         }
     }
-
 </style>
 
 <h4></h4>
@@ -54,14 +53,22 @@
         <h6>Posted on {{post.25}}</h6>
         <h6><span class="material-icons icons-size-bg">wrong_location</span><b>&nbsp;&nbsp;{{post.21}}</b></h6>
     </div>
+    {% if request.session.email %}
     {% if post.2 == request.session.email %}
     <div class="col-2" style="align-items: center;">
-        <button type="button" class="btn btn-primary">Edit Post</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/edit-post/{{post.16}}/'">Edit
+            Post</button>
     </div>
     {% else %}
     <div class="col-2" style="align-items: center;">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Claim
             Ownership</button>
+    </div>
+    {% endif %}
+    {% else %}
+    <div class="col-2" style="align-items: center;">
+        <button type="button" class="btn btn-primary" onclick="location.href='../../authenticate'">Login to
+            Claim</button>
     </div>
     {% endif %}
 </div>
@@ -104,7 +111,8 @@
     <div class="col-6">
         <div class="card-img"><img src="../../{{post.23}}" alt="bkash-payment-logo" style="width: 100%;
     height: auto;
-    object-fit: cover;"></div></div>
+    object-fit: cover;"></div>
+    </div>
     <div class="col-3"></div>
 </div>
 <br>

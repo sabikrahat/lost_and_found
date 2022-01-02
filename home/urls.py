@@ -16,6 +16,7 @@ urlpatterns = [
     path('terms-and-conditions', views.terms_and_conditions, name="terms-and-conditions"),
     path('contact', views.contact, name="contact"),
     path('write-post', views.write_post, name="write-post"),
+    path('edit-post/<token>/', views.edit_post, name="edit-post"),
     path('feedback', views.feedback, name="feedback"),
     path('view-profile', views.view_profile, name="view-profile"),
     path('edit-profile', views.edit_profile, name="edit-profile"),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('point-purchase', views.point_purchase, name='point-purchase'),
     path('point-add/<token>/', views.point_add, name='point-add'),
     path('claim-owner/<token>/', views.claim_owner, name='claim-owner'),
+    path('claim-accept/<token>/', views.claim_accept, name='claim-accept'),
+    path('claim-reject/<token>/', views.claim_reject, name='claim-reject'),
 ]

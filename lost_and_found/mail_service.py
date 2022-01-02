@@ -41,3 +41,46 @@ def send_point_success_mail(email):
     except Exception as e:
         print(e)
         return False
+
+
+def send_claim_rejection_mail(email):
+    try:
+        subject = 'Lost and Found - Claim Rejected'
+        message = f'Your request for claiming the material has been rejected by the admin. Click the link given below to view.\n\n http://127.0.0.1:8000'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+        send_mail(subject, message, email_from, recipient_list)
+        return True
+
+    except Exception as e:
+        print(e)
+        return False
+
+
+def send_claim_acception_mail(user):
+    try:
+        subject = 'Lost and Found - Claim Acception'
+        message = f'''Your request for claiming the material has been accepted by the admin.
+
+        The post publisher details:
+                        Name: {user.name}
+                        Email: {user.email}
+                        Phone: {user.phoneNumber}
+                        Location: {user.location}
+                        Bio: {user.bio}
+                        Messenger: {user.messengerUrl}
+                        Whatsapp: {user.whatsappUrl}
+                        Telegram: {user.telegramUrl}
+
+        Please Contact with the publisher for further details. Thank you for using our service. Please give us feedback on our service.
+
+        Click the link given below to view. http://127.0.0.1:8000'''
+
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user.email]
+        send_mail(subject, message, email_from, recipient_list)
+        return True
+
+    except Exception as e:
+        print(e)
+        return False
