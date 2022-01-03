@@ -28,4 +28,5 @@ urlpatterns = [
     path('claim-owner/<token>/', views.claim_owner, name='claim-owner'),
     path('claim-accept/<token>/', views.claim_accept, name='claim-accept'),
     path('claim-reject/<token>/', views.claim_reject, name='claim-reject'),
+    path('new_pdf', views.new_pdf, name="new_pdf"),
 ]

@@ -7,6 +7,13 @@ from django.db import connection
 import time
 import uuid
 from lost_and_found.mail_service import send_claim_acception_mail, send_claim_rejection_mail, send_forget_password_mail, send_point_purchase_mail, send_point_success_mail
+from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 
 # Create your views here.
 
@@ -542,7 +549,8 @@ def point_purchase(request):
 
 
 def rahat(request):
-    return render(request, 'xtemp_rahat.html')
+    return render(request, 'xtemp_humaira.html')
+   
 
 
 def humaira(request):
@@ -551,3 +559,54 @@ def humaira(request):
 
 def kawshik(request):
     return render(request, 'xtemp_kawshik.html')
+
+
+def new_pdf(request):
+     # create Bytestream Buffer
+    buf = io.BytesIO()
+
+    #create a canvas
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+
+    #create a text object
+    textob = c.beginText()
+    textob.setTextOrigin(inch,   inch)
+    textob.setFont("Helvetica",8)
+
+    #auto Generate user details
+    # lines =[
+    #    "This is the information of post publisher. "
+    #     "You can contact with him to collect your lost materials.  "
+    #     "For more query plz visit our website. "
+    # ]
+
+
+    posts =  PostModel.objects.all
+
+    lines = []
+
+    for post in posts:
+        lines.append(post.publisherName)
+        lines.append(post.title)
+        lines.append(post.description)
+        lines.append(post. location)
+        lines.append(post.lostDateTime)
+        lines.append(" ")
+
+
+    
+    #loop
+    for line in lines:
+        textob.textLine(line)
+    
+    #Finish up
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True, filename='new.pdf')
+    
+
+
+
