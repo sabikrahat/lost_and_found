@@ -8,10 +8,73 @@ import time
 import uuid
 from lost_and_found.mail_service import send_claim_acception_mail, send_claim_rejection_mail, send_forget_password_mail, send_point_purchase_mail, send_point_success_mail
 
+from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 # Create your views here.
+
+# generate pdf
+
+
+def pdf(request):
+    try:
+        user = UserModel.objects.get(email=request.session['email'])
+        buf = io.BytesIO()
+        c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+
+        # create a text object
+        textob = c.beginText()
+        textob.setTextOrigin(inch, inch)
+        textob.setFont("Helvetica", 11)
+
+        lines = [
+            user.name,
+            user.email,
+            user.phoneNumber,
+            user.bio,
+            user.point,
+            user.completeProfile,
+            user.location,
+            user.messengerUrl,
+            user.whatsappUrl,
+            user.telegramUrl,
+        ]
+
+        lines.append('\n\n')
+        lines.append(user.name)
+        lines.append(user.email)
+        lines.append(user.phoneNumber)
+        lines.append(user.bio)
+        lines.append(user.point)
+        lines.append(user.completeProfile)
+        lines.append(user.location)
+        lines.append(user.messengerUrl)
+        lines.append(user.whatsappUrl)
+        lines.append(user.telegramUrl)
+
+        # loop
+        for line in lines:
+            textob.textLine(line)
+
+        # Finish up
+        c.drawText(textob)
+        c.showPage()
+        c.save()
+        buf.seek(0)
+
+        return FileResponse(buf, as_attachment=True, filename='lost-and-found.pdf')
+    except:
+        messages.error(request, 'You need to login first')
+        print()
+        return redirect('authenticate')
 
 
 # home function
+
 
 def home(request):
     cursor = connection.cursor()

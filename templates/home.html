@@ -98,12 +98,14 @@
         visibility: hidden;
         animation-fill-mode: forwards;
 
-}
+    }
 
-@keyframes mymove {
-  50% {text-shadow: 10px 20px 30px blue;}
-}
-  
+    @keyframes mymove {
+        50% {
+            text-shadow: 10px 20px 30px blue;
+        }
+    }
+
 
     @keyframes moveright {
         0% {
@@ -117,7 +119,7 @@
         }
     }
 
- /* ------------for image----------- */
+    /* ------------for image----------- */
 
     .col-md-7 .responsive {
         animation: zoomin 1s linear 1;
@@ -138,7 +140,6 @@
 
         }
     }
-
 </style>
 
 <head>
@@ -210,6 +211,9 @@
                         <p id="nameshow"
                             style="color: rgb(13, 184, 13); text-align: center; margin: 0.3em; padding-right: 1em;"></p>
                     </b>
+                    <a href="{% url 'pdf' %}"><button type="button" class="btn btn-outline-secondary btn-sm">
+                            PDF&ensp;<span class="badge badge-secondary">1</span>
+                        </button></a>&emsp;
                     {% endif %}
                     <script type="text/javascript">
                         var email = "{% if request.session.email %}{{ request.session.email }}{% endif %}";
