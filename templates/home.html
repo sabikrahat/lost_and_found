@@ -211,9 +211,9 @@
                         <p id="nameshow"
                             style="color: rgb(13, 184, 13); text-align: center; margin: 0.3em; padding-right: 1em;"></p>
                     </b>
-                    <a href="{% url 'pdf' %}"><button type="button" class="btn btn-outline-secondary btn-sm">
-                            PDF&ensp;<span class="badge badge-secondary">1</span>
-                        </button></a>&emsp;
+                    <a href="{% url 'pdf-generated' %}">
+                        <button type="button" class="btn btn-outline-secondary btn-sm">&ensp;PDF&ensp;</button>
+                    </a>&emsp;
                     {% endif %}
                     <script type="text/javascript">
                         var email = "{% if request.session.email %}{{ request.session.email }}{% endif %}";
