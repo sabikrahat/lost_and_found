@@ -100,6 +100,13 @@
 
     }
 
+    .option {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+
     @keyframes mymove {
         50% {
             text-shadow: 10px 20px 30px blue;
@@ -382,17 +389,65 @@
                                     <div class="form-group">
                                         <label for="location_field">Search Location</label>
                                         <br>
-                                        <input type="Search Location" class="form-control" id="location_field"
-                                            placeholder="Search your location">
+
+                                        <form class="d-flex">
+                                            <style>
+                                                @media screen and (-webkit-min-device-pixel-ratio:0) {
+
+                                                    /*safari and chrome*/
+                                                    select {
+                                                        height: 42px;
+                                                        width: 100%;
+                                                        line-height: 50px;
+                                                        background: #f4f4f4;
+                                                        border: 3px solid #0d6efd;
+                                                        border-radius: 5px;
+                                                    }
+                                                }
+
+                                                select::-moz-focus-inner {
+                                                    /*Remove button padding in FF*/
+                                                    border: 0;
+                                                    padding: 0;
+                                                }
+
+                                                @-moz-document url-prefix() {
+
+                                                    /* targets Firefox only */
+                                                    select {
+                                                        padding: 15px 0 !important;
+                                                    }
+                                                }
+
+                                                @media screen\0 {
+
+                                                    /* IE Hacks: targets IE 8, 9 and 10 */
+                                                    select {
+                                                        height: 42px;
+                                                        width: 100%;
+                                                        line-height: 50px;
+                                                        background: #f4f4f4;
+                                                        border: 2px solid #0d6efd;
+                                                        border-radius: 5px;
+                                                    }
+                                                }
+                                            </style>
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                                <select name="locatn" onchange="this.form.submit()">
+                                                    <option disabled="true">Select your location to filter post</option>
+                                                    <option value="All">All</option>
+                                                    {% for lctn in locations %}
+                                                    <option value="{{lctn}}">{{lctn}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </form>
+                                        </form>
                                     </div>
                                 </form>
-                            </div><br>
-                            <div class="row-2">
-                                <button type="button" class="btn btn-outline-primary" onclick="return getCoordintes();">
-                                    Get Current Location
-                                </button>&emsp;
-                                <button type="button" class="btn btn-primary">Search Now</button>
                             </div>
+                            <br>
+
                         </div>
                     </div>
                 </div>

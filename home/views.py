@@ -53,16 +53,96 @@ def pdf_generated(request):
 
 
 def home(request):
-    cursor = connection.cursor()
-    cursor.execute(
-        'SELECT * FROM user_posts ORDER BY id DESC;')
-    posts = cursor.fetchall()
-    cursor.close()
     try:
         user = UserModel.objects.get(email=request.session['email'])
-        return render(request, 'home.html', {'posts': posts, 'user': user})
+        if request.method == 'POST':
+            if request.POST.get('locatn'):
+                print('Location: ' + request.POST.get('locatn'))
+                if request.POST.get('locatn') == "All":
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts ORDER BY id DESC;')
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+                else:
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts WHERE location = %s ORDER BY id DESC;', [request.POST.get('locatn')])
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    print(posts)
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+            else:
+                cursor = connection.cursor()
+                cursor.execute(
+                    'SELECT * FROM user_posts ORDER BY id DESC;')
+                posts = cursor.fetchall()
+                cursor.close()
+                locations = []
+                for post in posts:
+                    locations.append(post[5])
+                return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+        else:
+            cursor = connection.cursor()
+            cursor.execute(
+                'SELECT * FROM user_posts ORDER BY id DESC;')
+            posts = cursor.fetchall()
+            cursor.close()
+            locations = []
+            for post in posts:
+                locations.append(post[5])
+            return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
     except:
-        return render(request, 'home.html', {'posts': posts})
+        if request.method == 'POST':
+            if request.POST.get('locatn'):
+                print('Location: ' + request.POST.get('locatn'))
+                if request.POST.get('locatn') == "All":
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts ORDER BY id DESC;')
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations})
+                else:
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts WHERE location = %s ORDER BY id DESC;', [request.POST.get('locatn')])
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations})
+            else:
+                cursor = connection.cursor()
+                cursor.execute(
+                    'SELECT * FROM user_posts ORDER BY id DESC;')
+                posts = cursor.fetchall()
+                cursor.close()
+                locations = []
+                for post in posts:
+                    locations.append(post[5])
+                return render(request, 'home.html', {'posts': posts, 'locations': locations})
+        else:
+            cursor = connection.cursor()
+            cursor.execute(
+                'SELECT * FROM user_posts ORDER BY id DESC;')
+            posts = cursor.fetchall()
+            cursor.close()
+            locations = []
+            for post in posts:
+                locations.append(post[5])
+            return render(request, 'home.html', {'posts': posts, 'locations': locations})
 
 
 # authentication function
