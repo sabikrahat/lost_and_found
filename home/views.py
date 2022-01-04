@@ -15,68 +15,44 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
-from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from django.http import FileResponse
-import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
+
+from django.template.loader import get_template
+
+from xhtml2pdf import pisa
 # Create your views here.
 
 # generate pdf
 
 
-def pdf(request):
+def pdf_generated(request):
     try:
         user = UserModel.objects.get(email=request.session['email'])
-        buf = io.BytesIO()
-        c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+        try:
+            claimer = ClaimOwner.objects.raw(
+                'SELECT * FROM claim_owner WHERE claimerEmail = %s and STATUS = %s;', [user.email, 'Accepted'])[0]
+            showUser = UserModel.objects.get(email=claimer.postPunlisherEmail)
+            post = PostModel.objects.get(id=claimer.postId)
 
-        # create a text object
-        textob = c.beginText()
-        textob.setTextOrigin(inch, inch)
-        textob.setFont("Helvetica", 11)
-
-        lines = [
-            user.name,
-            user.email,
-            user.phoneNumber,
-            user.bio,
-            user.point,
-            user.completeProfile,
-            user.location,
-            user.messengerUrl,
-            user.whatsappUrl,
-            user.telegramUrl,
-        ]
-
-        lines.append('\n\n')
-        lines.append(user.name)
-        lines.append(user.email)
-        lines.append(user.phoneNumber)
-        lines.append(user.bio)
-        lines.append(user.point)
-        lines.append(user.completeProfile)
-        lines.append(user.location)
-        lines.append(user.messengerUrl)
-        lines.append(user.whatsappUrl)
-        lines.append(user.telegramUrl)
-
-        # loop
-        for line in lines:
-            textob.textLine(line)
-
-        # Finish up
-        c.drawText(textob)
-        c.showPage()
-        c.save()
-        buf.seek(0)
-
-        return FileResponse(buf, as_attachment=True, filename='lost-and-found.pdf')
+            template_path = 'pdf_generated.html'
+            context = {'user': user, 'showUser': showUser, 'post': post}
+            response = HttpResponse(content_type='application/pdf')
+            # response['Content-Disposition'] = 'attachment; filename="lost-and-found.pdf"' # for download
+            response['Content-Disposition'] = 'filename="lost-and-found.pdf"'
+            template = get_template(template_path)
+            html = template.render(context)
+            # create a pdf
+            pisa_status = pisa.CreatePDF(
+                html, dest=response)
+            # if error then show some funy view
+            if pisa_status.err:
+                return HttpResponse('We had some errors <pre>' + html + '</pre>')
+            return response
+        except:
+            messages.error(request, 'You have no pdf to show.')
+            return redirect('/')
     except:
         messages.error(request, 'You need to login first')
-        print()
         return redirect('authenticate')
 
 
@@ -84,16 +60,96 @@ def pdf(request):
 
 
 def home(request):
-    cursor = connection.cursor()
-    cursor.execute(
-        'SELECT * FROM user_posts ORDER BY id DESC;')
-    posts = cursor.fetchall()
-    cursor.close()
     try:
         user = UserModel.objects.get(email=request.session['email'])
-        return render(request, 'home.html', {'posts': posts, 'user': user})
+        if request.method == 'POST':
+            if request.POST.get('locatn'):
+                print('Location: ' + request.POST.get('locatn'))
+                if request.POST.get('locatn') == "All":
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts ORDER BY id DESC;')
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+                else:
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts WHERE location = %s ORDER BY id DESC;', [request.POST.get('locatn')])
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    print(posts)
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+            else:
+                cursor = connection.cursor()
+                cursor.execute(
+                    'SELECT * FROM user_posts ORDER BY id DESC;')
+                posts = cursor.fetchall()
+                cursor.close()
+                locations = []
+                for post in posts:
+                    locations.append(post[5])
+                return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+        else:
+            cursor = connection.cursor()
+            cursor.execute(
+                'SELECT * FROM user_posts ORDER BY id DESC;')
+            posts = cursor.fetchall()
+            cursor.close()
+            locations = []
+            for post in posts:
+                locations.append(post[5])
+            return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
     except:
-        return render(request, 'home.html', {'posts': posts})
+        if request.method == 'POST':
+            if request.POST.get('locatn'):
+                print('Location: ' + request.POST.get('locatn'))
+                if request.POST.get('locatn') == "All":
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts ORDER BY id DESC;')
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations})
+                else:
+                    cursor = connection.cursor()
+                    cursor.execute(
+                        'SELECT * FROM user_posts WHERE location = %s ORDER BY id DESC;', [request.POST.get('locatn')])
+                    posts = cursor.fetchall()
+                    cursor.close()
+                    locations = []
+                    for post in posts:
+                        locations.append(post[5])
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations})
+            else:
+                cursor = connection.cursor()
+                cursor.execute(
+                    'SELECT * FROM user_posts ORDER BY id DESC;')
+                posts = cursor.fetchall()
+                cursor.close()
+                locations = []
+                for post in posts:
+                    locations.append(post[5])
+                return render(request, 'home.html', {'posts': posts, 'locations': locations})
+        else:
+            cursor = connection.cursor()
+            cursor.execute(
+                'SELECT * FROM user_posts ORDER BY id DESC;')
+            posts = cursor.fetchall()
+            cursor.close()
+            locations = []
+            for post in posts:
+                locations.append(post[5])
+            return render(request, 'home.html', {'posts': posts, 'locations': locations})
 
 
 # authentication function

@@ -75,7 +75,7 @@ class UserFeedback(models.Model):
 class PostModel(models.Model):
     publisherId = models.CharField(max_length=20)
     publisherName = models.CharField(max_length=50)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100) 
     description = models.CharField(max_length=3072)
     location = models.CharField(max_length=50)
     lostDateTime = models.DateTimeField()
