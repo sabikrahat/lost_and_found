@@ -433,9 +433,17 @@
                                         {% csrf_token %}
                                         <select name="locatn" onchange="this.form.submit()">
                                             <option disabled="true">Select your location to filter post</option>
+                                            {% if search == 'All' %}
+                                            <option value="All" selected>All Types </option>
+                                            {% else %}
                                             <option value="All">All Types </option>
+                                            {% endif %}
                                             {% for lctn in locations %}
+                                            {% if search == lctn %}
+                                            <option value="{{lctn}}" selected>{{lctn}}</option>
+                                            {% else %}
                                             <option value="{{lctn}}">{{lctn}}</option>
+                                            {% endif %}
                                             {% endfor %}
                                         </select>
                                     </form>
@@ -458,6 +466,7 @@
                                     style="background-image:url('{{post.7}}'); background-position: center;">
                                     <div class="info">
                                         <h1 class="title">{{post.3}}</h1>
+                                        <h6>&emsp;&ensp;Found at&nbsp;<b>{{post.5}}</b></h6>
                                         <p class="description">{{post.4}}</p>
                                     </div>
                                 </div>
