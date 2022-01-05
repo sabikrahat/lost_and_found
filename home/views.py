@@ -49,6 +49,8 @@ def pdf_generated(request):
         return redirect('authenticate')
 
 
+
+
 # home function
 
 
