@@ -107,12 +107,6 @@
         padding-right: 120px;
     }
 
-    @keyframes mymove {
-        50% {
-            text-shadow: 10px 20px 30px blue;
-        }
-    }
-
 
     @keyframes moveright {
         0% {
@@ -203,6 +197,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}"><b>Log Out</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'new_pdf' %}"><b>User Pdf</b></a>
                         </li>
                         {% else %}
                         <li class="nav-item">
