@@ -32,3 +32,7 @@ Phase -2:
     8. link (messenger, whatsapp, telegram) add to profile
     9. edit profile with backend
     10. unit test code added
+
+Phase -3:
+
+    => rest of the features done in this phase.....
