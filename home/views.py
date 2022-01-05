@@ -80,6 +80,8 @@ def home(request):
                     locations = []
                     for post in allPosts:
                         locations.append(post[5])
+                    locations = list(dict.fromkeys(locations))
+                    locations.sort()
                     return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
                 else:
                     cursor = connection.cursor()
@@ -90,6 +92,8 @@ def home(request):
                     locations = []
                     for post in allPosts:
                         locations.append(post[5])
+                    locations = list(dict.fromkeys(locations))
+                    locations.sort()
                     return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
             else:
                 cursor = connection.cursor()
@@ -100,6 +104,8 @@ def home(request):
                 locations = []
                 for post in allPosts:
                     locations.append(post[5])
+                locations = list(dict.fromkeys(locations))
+                locations.sort()
                 return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
         else:
             cursor = connection.cursor()
@@ -110,6 +116,8 @@ def home(request):
             locations = []
             for post in allPosts:
                 locations.append(post[5])
+            locations = list(dict.fromkeys(locations))
+            locations.sort()
             return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
     except:
         if request.method == 'POST':
@@ -125,6 +133,8 @@ def home(request):
                     locations = []
                     for post in allPosts:
                         locations.append(post[5])
+                    locations = list(dict.fromkeys(locations))
+                    locations.sort()
                     return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
                 else:
                     cursor = connection.cursor()
@@ -135,6 +145,8 @@ def home(request):
                     locations = []
                     for post in allPosts:
                         locations.append(post[5])
+                    locations = list(dict.fromkeys(locations))
+                    locations.sort()
                     return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
             else:
                 cursor = connection.cursor()
@@ -145,6 +157,8 @@ def home(request):
                 locations = []
                 for post in allPosts:
                     locations.append(post[5])
+                locations = list(dict.fromkeys(locations))
+                locations.sort()
                 return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
         else:
             cursor = connection.cursor()
@@ -155,6 +169,8 @@ def home(request):
             locations = []
             for post in allPosts:
                 locations.append(post[5])
+            locations = list(dict.fromkeys(locations))
+            locations.sort()
             return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
 
 
@@ -675,7 +691,6 @@ def point_purchase(request):
 
 def rahat(request):
     return render(request, 'xtemp_humaira.html')
-   
 
 
 def humaira(request):

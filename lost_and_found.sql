@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2022 at 11:18 PM
+-- Generation Time: Jan 05, 2022 at 05:05 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -51,11 +51,11 @@ CREATE TABLE `app_users` (
 --
 
 INSERT INTO `app_users` (`id`, `name`, `email`, `password`, `phoneNumber`, `bio`, `point`, `completeProfile`, `location`, `messengerUrl`, `whatsappUrl`, `telegramUrl`, `profileImg`, `nidFrontImg`, `nidBackImg`, `created_at`) VALUES
-(1, 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', 'pbkdf2_sha256$260000$ietosIdcZpo7nnSEbIQDY7$V/7cwBFAyAcYkyKlT238W2lJRtB5ALcJp7zzmQRNEsc=', '01647629698', 'A self-taught programmer who always tries to learn something new and interesting.', '273', '100%', 'Merul Badda, Anandanagar', 'https://m.me/sabikrahat', 'https://wa.me/8801647629698', 'https://t.me/sabikrahat', 'uploads/20220103032129-rahat.jpg', 'uploads/20220103032129-nid-card-front.jpg', 'uploads/20220103032129-nid-card-back.png', '2022-01-02 21:20:36.720017'),
-(2, 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', 'pbkdf2_sha256$260000$GTi8w2e2oTVqmyXxKpQVLd$igNuJ98ihTFGRr82Y1TLUJK94aVeNwmonLqm7SPxcng=', '01733627713', 'Hello there!', '50', '100%', 'Malibag, Dhaka', 'https://m.me/humairatabassum.khan', 'https://wa.me/8801733627713', 'https://t.me/humairatabassum.khan', 'uploads/20220103032558-humaira.jpg', 'uploads/20220103032558-nid-card-front.jpg', 'uploads/20220103032558-nid-card-back.png', '2022-01-02 21:24:56.536949'),
-(3, 'Kawshik Das', 'kawshik400@gmail.com', 'pbkdf2_sha256$260000$GQQxovn8pj4JmD9WgqYKZU$nD6CA0Zbq/3aeW0Owo/YfMhfdrZRLPLy9g7jl0gu+ac=', '01875602853', 'Hello there!', '150', '100%', 'Puran Dhaka', 'https://m.me/kawshikdas400', 'https://wa.me/8801875602853', 'https://t.me/kawshikdas400', 'uploads/20220103034034-kawshik.jpg', 'uploads/20220103034034-nid-card-front.jpg', 'uploads/20220103034034-nid-card-back.png', '2022-01-02 21:36:50.493064'),
-(4, 'Md. Sabik Alam Rahat', 'lostandfound72428@gmail.com', 'pbkdf2_sha256$260000$nVr6s4uvgoxzwhedvXUoZ5$IXe6GEUPkWxd9C+A+77azlX8p7JfFWXURusDL6+zmZc=', '01647629698', 'Hello there! I\'m Admin User', '200', '100%', 'Aftab Nagar', 'https://m.me/sabikrahat', 'https://wa.me/8801647629698', 'https://t.me/sabikrahat', 'uploads/20220103034824-lost-and-found.jpg', 'uploads/20220103034824-nid-card-front.jpg', 'uploads/20220103034824-nid-card-back.png', '2022-01-02 21:46:32.176865'),
-(5, 'Test User', 'test@gmail.com', 'pbkdf2_sha256$260000$CctaxNgP7QhnfrKgC5aycc$lVJrSBLpUHcDScAsyBjlhRp1/DPl736mVjHkno5PpY0=', '', '', '200', '25%', '', '', '', '', '', '', '', '2022-01-02 22:16:50.825875');
+(1, 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', 'pbkdf2_sha256$260000$bBMmVmrZYXm11PS1lF7GnE$zF1ZrHTxR+oa2465drusb9FmIyuzkl3hIPuJMZ4u1/A=', '01647629698', 'A self-taught programmer who always tries to learn something new and interesting.', '150', '100%', 'Merul Badda, Anandanagar', 'https://m.me/sabikrahat', 'https://wa.me/8801647629698', 'https://t.me/sabikrahat', 'uploads/20220105212745-rahat.jpg', 'uploads/20220105212745-nid-card-front.jpg', 'uploads/20220105212745-nid-card-back.png', '2022-01-05 15:26:20.513000'),
+(2, 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', 'pbkdf2_sha256$260000$OstTXmRseJkl87XJPG0wfl$jaGyeD3iEs6h0Ybu4OHXFrZbBPAZpB+yrz94N4jPmcg=', '01733627713', 'Hello there!', '100', '100%', 'Malibag, Dhaka', 'https://m.me/humairatabassum.khan', 'https://wa.me/8801733627713', 'https://t.me/humairatabassum.khan', 'uploads/20220105213201-humaira.jpg', 'uploads/20220105213201-nid-card-front.jpg', 'uploads/20220105213201-nid-card-back.png', '2022-01-05 15:30:56.366117'),
+(3, 'Kawshik Das', 'kawshik400@gmail.com', 'pbkdf2_sha256$260000$rgRbU5GBtmg3VBMSI570s6$4wApIFBMVdxXTSo9nV2fx2ikMfjaBW5GtRpUsA1Targ=', '01875602853', 'Hello there!', '100', '100%', 'Puran Dhaka', 'https://m.me/kawshikdas400', 'https://wa.me/8801875602853', 'https://t.me/kawshikdas400', 'uploads/20220105213542-kawshik.jpg', 'uploads/20220105213542-nid-card-front.jpg', 'uploads/20220105213542-nid-card-back.png', '2022-01-05 15:34:49.806958'),
+(4, 'Lost and Found', 'lostandfound72428@gmail.com', 'pbkdf2_sha256$260000$2zRvuhTkMZS6VSvfGmOQlM$g4Ni9O4xjgZTPUXLF9Sq1dfXN+07hXZFdNSM0ukrXQ4=', '01647629698', 'Hello there! I\'m Admin User', '200', '100%', 'Aftab Nagar', 'https://m.me/sabikrahat', 'https://wa.me/8801647629698', 'https://t.me/sabikrahat', 'uploads/20220105215044-lost-and-found.jpg', 'uploads/20220105215044-nid-card-front.jpg', 'uploads/20220105215044-nid-card-back.png', '2022-01-05 15:48:52.760575'),
+(5, 'Test User', 'test@gmail.com', 'pbkdf2_sha256$260000$wQ8V2OdyfP0K0QicOuNciT$u67yF30BhLbZX1aNOM0fFkVViNquQ+nENhPg62htcnw=', '', '', '200', '25%', '', '', '', '', '', '', '', '2022-01-05 16:04:37.616669');
 
 -- --------------------------------------------------------
 
@@ -217,12 +217,12 @@ CREATE TABLE `bkash_payment` (
 --
 
 INSERT INTO `bkash_payment` (`id`, `name`, `email`, `bkashNumber`, `bkashTransaction`, `point`, `status`, `created_at`) VALUES
-(1, 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', '01647629698', 'kljuhyfgtrytghgf', '123', 'Done', '2022-01-03 03:23:38.208336'),
-(2, 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', '01647629698', 'kljuhyfg12hy', '50', 'Pending', '2022-01-03 03:24:12.777070'),
-(3, 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '01733627713', 'kljuhyfg12hy', '158', 'Pending', '2022-01-03 03:36:10.469440'),
-(4, 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '01733627713', 'sfdgg', '147', 'Pending', '2022-01-03 03:36:26.605506'),
-(5, 'Kawshik Das', 'kawshik400@gmail.com', '01875602853', 'kljuhyfgtrytghgf', '154', 'Pending', '2022-01-03 03:45:22.601816'),
-(6, 'Kawshik Das', 'kawshik400@gmail.com', '01875602853', 'sfdgg', '200', 'Done', '2022-01-03 03:45:32.656046');
+(1, 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', '01647629698', 'kljuhyfgtrytghgf', '100', 'Pending', '2022-01-05 21:30:17.145864'),
+(2, 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', '01647629698', 'fhgjdhgjr', '147', 'Pending', '2022-01-05 21:30:27.744393'),
+(3, 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '01733627713', 'kljuhyfgtrytghgf', '50', 'Pending', '2022-01-05 21:34:02.667315'),
+(4, 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '01733627713', 'sfdgg', '50', 'Pending', '2022-01-05 21:34:11.633617'),
+(5, 'Kawshik Das', 'kawshik400@gmail.com', '01875602853', 'kljuhyfgtrytghgf', '123', 'Pending', '2022-01-05 21:37:09.345595'),
+(6, 'Kawshik Das', 'kawshik400@gmail.com', '01875602853', 'fhgjdhgjr', '147', 'Pending', '2022-01-05 21:37:17.914222');
 
 -- --------------------------------------------------------
 
@@ -248,9 +248,12 @@ CREATE TABLE `claim_owner` (
 --
 
 INSERT INTO `claim_owner` (`id`, `claimerId`, `claimerName`, `claimerEmail`, `postId`, `postPunlisherEmail`, `postPunlisherName`, `claimFileImg`, `status`, `created_at`) VALUES
-(1, '2', 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '1', 'sabikrahat72428@gmail.com', 'Md. Sabik Alam Rahat', 'uploads/20220103033554-wallet-secret.jpg', 'Pending', '2022-01-02 21:35:54.656887'),
-(2, '3', 'Kawshik Das', 'kawshik400@gmail.com', '2', 'humaira.tabassumkhan@gmail.com', 'Humaira Tabassum', 'uploads/20220103034135-mobile-secret.jpg', 'Pending', '2022-01-02 21:41:35.839844'),
-(3, '3', 'Kawshik Das', 'kawshik400@gmail.com', '1', 'sabikrahat72428@gmail.com', 'Md. Sabik Alam Rahat', 'uploads/20220103034153-wallet-secret.jpg', 'Pending', '2022-01-02 21:41:53.653377');
+(1, '2', 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '1', 'sabikrahat72428@gmail.com', 'Md. Sabik Alam Rahat', 'uploads/20220105213338-wallet-secret.jpg', 'Pending', '2022-01-05 15:33:38.744387'),
+(2, '3', 'Kawshik Das', 'kawshik400@gmail.com', '2', 'humaira.tabassumkhan@gmail.com', 'Humaira Tabassum', 'uploads/20220105213732-mobile.jpg', 'Pending', '2022-01-05 15:37:32.543610'),
+(3, '1', 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', '3', 'kawshik400@gmail.com', 'Kawshik Das', 'uploads/20220105213846-watch-secret.jpg', 'Pending', '2022-01-05 15:38:46.515847'),
+(4, '2', 'Humaira Tabassum', 'humaira.tabassumkhan@gmail.com', '1', 'sabikrahat72428@gmail.com', 'Md. Sabik Alam Rahat', 'uploads/20220105214035-umbrella-secret.jpg', 'Pending', '2022-01-05 15:40:35.935596'),
+(5, '3', 'Kawshik Das', 'kawshik400@gmail.com', '2', 'humaira.tabassumkhan@gmail.com', 'Humaira Tabassum', 'uploads/20220105214311-glass-secret.jpg', 'Pending', '2022-01-05 15:43:11.054087'),
+(6, '1', 'Md. Sabik Alam Rahat', 'sabikrahat72428@gmail.com', '3', 'kawshik400@gmail.com', 'Kawshik Das', 'uploads/20220105214422-earphone-secret.jpg', 'Pending', '2022-01-05 15:44:22.113435');
 
 -- --------------------------------------------------------
 
@@ -318,25 +321,25 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2022-01-02 21:19:52.144022'),
-(2, 'auth', '0001_initial', '2022-01-02 21:19:56.210124'),
-(3, 'admin', '0001_initial', '2022-01-02 21:19:57.347089'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2022-01-02 21:19:57.366093'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2022-01-02 21:19:57.401092'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2022-01-02 21:19:57.731862'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2022-01-02 21:19:58.123668'),
-(8, 'auth', '0003_alter_user_email_max_length', '2022-01-02 21:19:58.182506'),
-(9, 'auth', '0004_alter_user_username_opts', '2022-01-02 21:19:58.220739'),
-(10, 'auth', '0005_alter_user_last_login_null', '2022-01-02 21:19:58.499157'),
-(11, 'auth', '0006_require_contenttypes_0002', '2022-01-02 21:19:58.519175'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2022-01-02 21:19:58.546193'),
-(13, 'auth', '0008_alter_user_username_max_length', '2022-01-02 21:19:58.633061'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2022-01-02 21:19:58.819067'),
-(15, 'auth', '0010_alter_group_name_max_length', '2022-01-02 21:19:58.917062'),
-(16, 'auth', '0011_update_proxy_permissions', '2022-01-02 21:19:58.960601'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2022-01-02 21:19:59.031416'),
-(18, 'home', '0001_initial', '2022-01-02 21:20:00.733761'),
-(19, 'sessions', '0001_initial', '2022-01-02 21:20:00.926760');
+(1, 'contenttypes', '0001_initial', '2022-01-05 15:25:25.145479'),
+(2, 'auth', '0001_initial', '2022-01-05 15:25:28.846029'),
+(3, 'admin', '0001_initial', '2022-01-05 15:25:29.732085'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2022-01-05 15:25:29.752661'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2022-01-05 15:25:29.777136'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2022-01-05 15:25:30.040186'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2022-01-05 15:25:30.736141'),
+(8, 'auth', '0003_alter_user_email_max_length', '2022-01-05 15:25:30.840364'),
+(9, 'auth', '0004_alter_user_username_opts', '2022-01-05 15:25:30.891905'),
+(10, 'auth', '0005_alter_user_last_login_null', '2022-01-05 15:25:31.265381'),
+(11, 'auth', '0006_require_contenttypes_0002', '2022-01-05 15:25:31.275384'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2022-01-05 15:25:31.306394'),
+(13, 'auth', '0008_alter_user_username_max_length', '2022-01-05 15:25:31.357503'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2022-01-05 15:25:31.402552'),
+(15, 'auth', '0010_alter_group_name_max_length', '2022-01-05 15:25:31.434196'),
+(16, 'auth', '0011_update_proxy_permissions', '2022-01-05 15:25:31.453191'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2022-01-05 15:25:31.503573'),
+(18, 'home', '0001_initial', '2022-01-05 15:25:32.883880'),
+(19, 'sessions', '0001_initial', '2022-01-05 15:25:33.190496');
 
 -- --------------------------------------------------------
 
@@ -355,7 +358,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('8unupk09dtcpr8owq2dn2eqj0jlxjxjy', 'eyJlbWFpbCI6InNhYmlrcmFoYXQ3MjQyOEBnbWFpbC5jb20ifQ:1n49Ac:VaC1gwamDiKJDzSFPXr_KXYqMWapvR3usHK_g85x1kw', '2022-01-16 22:17:42.638495');
+('zj5q5ajx9i9k7pqa3ed8xouttpegkcl9', 'eyJlbWFpbCI6InNhYmlrcmFoYXQ3MjQyOEBnbWFpbC5jb20ifQ:1n58mw:uRCbAtmL9vyOZ61t4V0tHUXxcHZJSaQPAst_ZX6sUTc', '2022-01-19 16:05:22.988089');
 
 -- --------------------------------------------------------
 
@@ -375,11 +378,11 @@ CREATE TABLE `reset_pwd_tokens` (
 --
 
 INSERT INTO `reset_pwd_tokens` (`id`, `forget_password_token`, `created_at`, `user_id`) VALUES
-(1, '', '2022-01-02 21:20:36.755011', 1),
-(2, '', '2022-01-02 21:24:56.598794', 2),
-(3, '', '2022-01-02 21:36:50.559062', 3),
-(4, '', '2022-01-02 21:46:32.234896', 4),
-(5, '', '2022-01-02 22:16:50.879873', 5);
+(1, '', '2022-01-05 15:26:20.552825', 1),
+(2, '', '2022-01-05 15:30:56.401118', 2),
+(3, '', '2022-01-05 15:34:49.876956', 3),
+(4, '', '2022-01-05 15:48:52.816104', 4),
+(5, '', '2022-01-05 16:04:38.045692', 5);
 
 -- --------------------------------------------------------
 
@@ -396,13 +399,6 @@ CREATE TABLE `users_contacts` (
   `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `users_contacts`
---
-
-INSERT INTO `users_contacts` (`id`, `messengerId`, `messengerName`, `messengerEmail`, `message`, `created_at`) VALUES
-(1, '4', 'Md. Sabik Alam Rahat', 'lostandfound72428@gmail.com', 'Hello there!', '2022-01-02 22:01:31.363390');
-
 -- --------------------------------------------------------
 
 --
@@ -417,13 +413,6 @@ CREATE TABLE `users_feedbacks` (
   `message` varchar(3072) NOT NULL,
   `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users_feedbacks`
---
-
-INSERT INTO `users_feedbacks` (`id`, `messengerId`, `messengerName`, `messengerEmail`, `message`, `created_at`) VALUES
-(1, '4', 'Md. Sabik Alam Rahat', 'lostandfound72428@gmail.com', 'Hello there!', '2022-01-02 22:01:47.953883');
 
 -- --------------------------------------------------------
 
@@ -449,9 +438,13 @@ CREATE TABLE `user_posts` (
 --
 
 INSERT INTO `user_posts` (`id`, `publisherId`, `publisherName`, `title`, `description`, `location`, `lostDateTime`, `fileImg`, `fileSecretImg`, `created_at`) VALUES
-(1, '1', 'Md. Sabik Alam Rahat', 'Found a Wallet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.', 'Khilgaon', '2022-01-02 03:22:00.000000', 'uploads/20220103032305-wallet.jpg', 'uploads/20220103032305-wallet-secret.jpg', '2022-01-02 21:23:05.274234'),
-(2, '2', 'Humaira Tabassum', 'Found a Mobile', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.', 'Mohammadpur', '2021-12-27 03:34:00.000000', 'uploads/20220103033530-mobile.jpg', 'uploads/20220103033530-mobile-secret.jpg', '2022-01-02 21:35:30.558573'),
-(3, '3', 'Kawshik Das', 'Found a Watch', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.', 'Mouchak, Dhaka', '2022-01-03 03:43:00.000000', 'uploads/20220103034407-watch.jpg', 'uploads/20220103034407-watch-secret.jpg', '2022-01-02 21:44:07.193179');
+(1, '1', 'Md. Sabik Alam Rahat', 'Found a Wallet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Badda', '2021-12-28 21:29:00.000000', 'uploads/20220105212943-wallet.jpg', 'uploads/20220105212943-wallet-secret.jpg', '2022-01-05 15:29:43.787784'),
+(2, '2', 'Humaira Tabassum', 'Found a Mobile', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Khilgaon', '2021-12-29 21:32:00.000000', 'uploads/20220105213323-mobile-secret.jpg', 'uploads/20220105213323-mobile.jpg', '2022-01-05 15:33:23.175576'),
+(3, '3', 'Kawshik Das', 'Found a Watch', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Malibag', '2021-12-30 21:36:00.000000', 'uploads/20220105213658-watch.jpg', 'uploads/20220105213658-watch-secret.jpg', '2022-01-05 15:36:58.812258'),
+(4, '1', 'Md. Sabik Alam Rahat', 'Found a Umbrella', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Puran Dhaka', '2021-12-31 21:38:00.000000', 'uploads/20220105213832-umbrella.jpg', 'uploads/20220105213832-umbrella-secret.jpg', '2022-01-05 15:38:32.272254'),
+(5, '2', 'Humaira Tabassum', 'Found a Glass', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Badda', '2022-01-01 21:41:00.000000', 'uploads/20220105214114-glass.jpg', 'uploads/20220105214114-glass-secret.jpg', '2022-01-05 15:41:14.060378'),
+(6, '3', 'Kawshik Das', 'Found a Earphone', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Khilgaon', '2022-01-02 21:43:00.000000', 'uploads/20220105214350-earphone.jpg', 'uploads/20220105214350-earphone-secret.jpg', '2022-01-05 15:43:50.689314'),
+(7, '1', 'Md. Sabik Alam Rahat', 'Found some Documents', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis risus sed vulputate odio ut enim. Integer malesuada nunc vel risus. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Vivamus arcu felis bibendum ut tristique et. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Tempus quam pellentesque nec nam aliquam sem. Sed arcu non odio euismod lacinia at quis risus. Pretium quam vulputate dignissim suspendisse in. Elementum eu facilisis sed odio morbi quis. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.\r\n\r\nEget gravida cum sociis natoque penatibus. Tristique et egestas quis ipsum suspendisse ultrices gravida. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Egestas sed tempus urna et. Dignissim sodales ut eu sem integer vitae justo eget. Urna duis convallis convallis tellus id interdum velit laoreet. In hac habitasse platea dictumst. Nulla aliquet enim tortor at auctor urna nunc id. Dictum at tempor commodo ullamcorper a. Amet mauris commodo quis imperdiet massa. Ut aliquam purus sit amet luctus venenatis lectus. Nibh tellus molestie nunc non. Quis enim lobortis scelerisque fermentum dui faucibus in. Nulla porttitor massa id neque aliquam.\r\n\r\nAmet nisl suscipit adipiscing bibendum est ultricies integer quis. Iaculis at erat pellentesque adipiscing commodo. Pretium vulputate sapien nec sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida. Rhoncus aenean vel elit scelerisque mauris. Nibh praesent tristique magna sit amet purus. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Habitant morbi tristique senectus et netus et. Scelerisque eu ultrices vitae auctor. Quis commodo odio aenean sed. Varius duis at consectetur lorem. Adipiscing vitae proin sagittis nisl rhoncus. Nunc vel risus commodo viverra maecenas accumsan lacus. Odio tempor orci dapibus ultrices in iaculis. Risus nullam eget felis eget nunc lobortis mattis. Est ultricies integer quis auctor elit sed.', 'Puran Dhaka', '2022-01-03 21:47:00.000000', 'uploads/20220105214746-document.jpg', 'uploads/20220105214746-document-secret.jpg', '2022-01-05 15:47:46.436381');
 
 --
 -- Indexes for dumped tables
@@ -629,7 +622,7 @@ ALTER TABLE `bkash_payment`
 -- AUTO_INCREMENT for table `claim_owner`
 --
 ALTER TABLE `claim_owner`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -659,19 +652,19 @@ ALTER TABLE `reset_pwd_tokens`
 -- AUTO_INCREMENT for table `users_contacts`
 --
 ALTER TABLE `users_contacts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users_feedbacks`
 --
 ALTER TABLE `users_feedbacks`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_posts`
 --
 ALTER TABLE `user_posts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
