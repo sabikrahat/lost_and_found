@@ -60,32 +60,38 @@ def pdf_generated(request):
 
 
 def home(request):
+    cursor = connection.cursor()
+    cursor.execute(
+        'SELECT * FROM user_posts ORDER BY id DESC;')
+    allPosts = cursor.fetchall()
+    cursor.close()
+    search = "All"
     try:
         user = UserModel.objects.get(email=request.session['email'])
         if request.method == 'POST':
-            if request.POST.get('locatn'):
-                print('Location: ' + request.POST.get('locatn'))
-                if request.POST.get('locatn') == "All":
+            search = request.POST.get('locatn')
+            if search:
+                print(search)
+                if search == "All":
                     cursor = connection.cursor()
                     cursor.execute(
                         'SELECT * FROM user_posts ORDER BY id DESC;')
                     posts = cursor.fetchall()
                     cursor.close()
                     locations = []
-                    for post in posts:
+                    for post in allPosts:
                         locations.append(post[5])
-                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
                 else:
                     cursor = connection.cursor()
                     cursor.execute(
-                        'SELECT * FROM user_posts WHERE location = %s ORDER BY id DESC;', [request.POST.get('locatn')])
+                        'SELECT * FROM user_posts WHERE location = %s ORDER BY id DESC;', [search])
                     posts = cursor.fetchall()
                     cursor.close()
-                    print(posts)
                     locations = []
-                    for post in posts:
+                    for post in allPosts:
                         locations.append(post[5])
-                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
             else:
                 cursor = connection.cursor()
                 cursor.execute(
@@ -93,9 +99,9 @@ def home(request):
                 posts = cursor.fetchall()
                 cursor.close()
                 locations = []
-                for post in posts:
+                for post in allPosts:
                     locations.append(post[5])
-                return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+                return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
         else:
             cursor = connection.cursor()
             cursor.execute(
@@ -103,23 +109,24 @@ def home(request):
             posts = cursor.fetchall()
             cursor.close()
             locations = []
-            for post in posts:
+            for post in allPosts:
                 locations.append(post[5])
-            return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user})
+            return render(request, 'home.html', {'posts': posts, 'locations': locations, 'user': user, 'search': search})
     except:
         if request.method == 'POST':
-            if request.POST.get('locatn'):
-                print('Location: ' + request.POST.get('locatn'))
-                if request.POST.get('locatn') == "All":
+            search = request.POST.get('locatn')
+            if search:
+                print(search)
+                if search == "All":
                     cursor = connection.cursor()
                     cursor.execute(
                         'SELECT * FROM user_posts ORDER BY id DESC;')
                     posts = cursor.fetchall()
                     cursor.close()
                     locations = []
-                    for post in posts:
+                    for post in allPosts:
                         locations.append(post[5])
-                    return render(request, 'home.html', {'posts': posts, 'locations': locations})
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
                 else:
                     cursor = connection.cursor()
                     cursor.execute(
@@ -127,9 +134,9 @@ def home(request):
                     posts = cursor.fetchall()
                     cursor.close()
                     locations = []
-                    for post in posts:
+                    for post in allPosts:
                         locations.append(post[5])
-                    return render(request, 'home.html', {'posts': posts, 'locations': locations})
+                    return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
             else:
                 cursor = connection.cursor()
                 cursor.execute(
@@ -137,9 +144,9 @@ def home(request):
                 posts = cursor.fetchall()
                 cursor.close()
                 locations = []
-                for post in posts:
+                for post in allPosts:
                     locations.append(post[5])
-                return render(request, 'home.html', {'posts': posts, 'locations': locations})
+                return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
         else:
             cursor = connection.cursor()
             cursor.execute(
@@ -147,9 +154,9 @@ def home(request):
             posts = cursor.fetchall()
             cursor.close()
             locations = []
-            for post in posts:
+            for post in allPosts:
                 locations.append(post[5])
-            return render(request, 'home.html', {'posts': posts, 'locations': locations})
+            return render(request, 'home.html', {'posts': posts, 'locations': locations, 'search': search})
 
 
 # authentication function

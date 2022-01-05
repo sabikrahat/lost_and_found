@@ -388,69 +388,71 @@
                             </div>
                             <br>
                             <div class="row-5">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="location_field">Search Location</label>
-                                        <br>
+                                <div class="form-group">
+                                    <label for="location_field">Search Location</label>
+                                    <br>
+                                    <style>
+                                        @media screen and (-webkit-min-device-pixel-ratio:0) {
 
-                                        <form class="d-flex">
-                                            <style>
-                                                @media screen and (-webkit-min-device-pixel-ratio:0) {
+                                            /*safari and chrome*/
+                                            select {
+                                                height: 42px;
+                                                width: 100%;
+                                                line-height: 50px;
+                                                background: #f4f4f4;
+                                                border: 3px solid #0d6efd;
+                                                border-radius: 5px;
+                                            }
+                                        }
 
-                                                    /*safari and chrome*/
-                                                    select {
-                                                        height: 42px;
-                                                        width: 100%;
-                                                        line-height: 50px;
-                                                        background: #f4f4f4;
-                                                        border: 3px solid #0d6efd;
-                                                        border-radius: 5px;
-                                                    }
-                                                }
+                                        select::-moz-focus-inner {
+                                            /*Remove button padding in FF*/
+                                            border: 0;
+                                            padding: 0;
+                                        }
 
-                                                select::-moz-focus-inner {
-                                                    /*Remove button padding in FF*/
-                                                    border: 0;
-                                                    padding: 0;
-                                                }
+                                        @-moz-document url-prefix() {
 
-                                                @-moz-document url-prefix() {
+                                            /* targets Firefox only */
+                                            select {
+                                                padding: 15px 0 !important;
+                                            }
+                                        }
 
-                                                    /* targets Firefox only */
-                                                    select {
-                                                        padding: 15px 0 !important;
-                                                    }
-                                                }
+                                        @media screen\0 {
 
-                                                @media screen\0 {
-
-                                                    /* IE Hacks: targets IE 8, 9 and 10 */
-                                                    select {
-                                                        height: 42px;
-                                                        width: 100%;
-                                                        line-height: 50px;
-                                                        background: #f4f4f4;
-                                                        border: 2px solid #0d6efd;
-                                                        border-radius: 5px;
-                                                    }
-                                                }
-                                            </style>
-                                            <form method="POST">
-                                                {% csrf_token %}
-                                                <select name="locatn" onchange="this.form.submit()">
-                                                    <option disabled="true">Select your location to filter post</option>
-                                                    <option value="All">All</option>
-                                                    {% for lctn in locations %}
-                                                    <option value="{{lctn}}">{{lctn}}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </form>
-                                        </form>
-                                    </div>
-                                </form>
+                                            /* IE Hacks: targets IE 8, 9 and 10 */
+                                            select {
+                                                height: 42px;
+                                                width: 100%;
+                                                line-height: 50px;
+                                                background: #f4f4f4;
+                                                border: 2px solid #0d6efd;
+                                                border-radius: 5px;
+                                            }
+                                        }
+                                    </style>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <select name="locatn" onchange="this.form.submit()">
+                                            <option disabled="true">Select your location to filter post</option>
+                                            {% if search == 'All' %}
+                                            <option value="All" selected>All Types </option>
+                                            {% else %}
+                                            <option value="All">All Types </option>
+                                            {% endif %}
+                                            {% for lctn in locations %}
+                                            {% if search == lctn %}
+                                            <option value="{{lctn}}" selected>{{lctn}}</option>
+                                            {% else %}
+                                            <option value="{{lctn}}">{{lctn}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </form>
+                                </div>
                             </div>
                             <br>
-
                         </div>
                     </div>
                 </div>
@@ -467,6 +469,7 @@
                                     style="background-image:url('{{post.7}}'); background-position: center;">
                                     <div class="info">
                                         <h1 class="title">{{post.3}}</h1>
+                                        <h6>&emsp;&ensp;Found at&nbsp;<b>{{post.5}}</b></h6>
                                         <p class="description">{{post.4}}</p>
                                     </div>
                                 </div>
