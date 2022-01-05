@@ -48,9 +48,6 @@ def pdf_generated(request):
         messages.error(request, 'You need to login first')
         return redirect('authenticate')
 
-
-
-
 # home function
 
 
