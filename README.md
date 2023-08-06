@@ -36,3 +36,6 @@ Phase -2:
 Phase -3:
 
     => rest of the features done in this phase.....
+
+Admin Email: lostandfound72428@gmail.com
+Password: 147258
